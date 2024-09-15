@@ -1,0 +1,21 @@
+// src/App.js
+import React from 'react';
+import About from "./components/About";
+import Contact from "./components/Contact";
+import Navbar from "./components/Navbar";
+import Projects from "./components/Projects";
+import Skills from "./components/Skills";
+import "./App.css"
+import Education from "./components/Education";
+export default function App() {
+    return (
+        <main className={"text-gray-400 bg-stone-950 body-font"} style={{fontFamily: 'MHTIROGLA'}}>
+            <Navbar />
+            <About />
+            <Projects />
+            <Skills />
+            <Education />
+            <Contact />
+        </main>
+    );
+}
