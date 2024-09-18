@@ -3,15 +3,15 @@ export const projects = [
     title: "Arquemuse",
     subtitle: "Flask Python and MySQL",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium dolore rerum laborum iure enim sint nemo omnis voluptate exercitationem eius?",
+        "The management system for Arquemuse Music School streamlines the management of courses, teachers, students, and enrollments, while providing secure authentication based on roles.",
     image: "./Arquemuse.gif",
-    link: "https://reactbootcamp.com",
+    link: "https://github.com/Fadeltnt/BD-Arquemuse.git",
   },
   {
     title: "ChalCLT",
     subtitle: "Java",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium dolore rerum laborum iure enim sint nemo omnis voluptate exercitationem eius?",
+      "Developed as part of the Object-Oriented Software Engineering course, ChalCLt is an innovative application that allows users to design and visualize cross-laminated timber cabins in an intuitive and efficient manner.",
     image: "./ChalCLT.gif",
     link: "https://drive.google.com/drive/folders/1KvumVvYN2eaw0RjtXg7BAhxB5ANlsYIp?usp=share_link",
   },
@@ -19,18 +19,11 @@ export const projects = [
     title: "Ufood",
     subtitle: "React",
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium dolore rerum laborum iure enim sint nemo omnis voluptate exercitationem eius?",
+      "UFood is a team project aimed at developing an application that allows users to find restaurants and share favorites with friends.",
     image: "./Ufood.gif",
-    link: "https://reactbootcamp.com",
+    link: "https://github.com/Fadeltnt/ufood",
   },
-  {
-    title: "Epic Todo App",
-    subtitle: "React Hooks",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium dolore rerum laborum iure enim sint nemo omnis voluptate exercitationem eius?",
-    image: "./project-4.gif",
-    link: "https://reactbootcamp.com",
-  },
+
 ];
 
 export const testimonials = [

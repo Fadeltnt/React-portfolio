@@ -13,18 +13,20 @@ export default function EducationAndExperience() {
         },
         {
             date: "July 2024",
-            title: "Representant de Marque ",
+            title: "Brand ambassador ",
             location: "Bell, Quebec",
         },
         {
             date: "Jun 2024",
-            title: "Microstage Initiation  A AWS",
+            title: " MICRO-WIL\n" +
+                "AWS Introduction",
             location: "Canadian Mobility and Aerospace Institute",
             certificate: "Attestation micro stage Aws.pdf",
         },
         {
             date: "July 2024",
-            title: "Microstage Introdution a l'intelligence artificiel",
+            title: " MICRO-WIL\n" +
+                "Introduction to Artificial Intelligence",
             location: "Canadian Mobility and Aerospace Institute",
             certificate: "Attestation IA.pdf",
         },
@@ -34,9 +36,9 @@ export default function EducationAndExperience() {
     // Icons corresponding to each timeline item
     const icons = [
         <img src="UL.png" alt=""/>,
-        <img src="https://media.licdn.com/dms/image/C510BAQEHj3_SBhJ-Zw/company-logo_200_200/0/1537804728723/bizmetric_logo?e=2147483647&V=beta&t=EMU4PE70vxa2ny6-4PBGIM4J3jqDF-AQsYdjR7T-0JQ" alt="Bizmetric"/>,
-        <img src="https://media.licdn.com/dms/image/C510BAQEHj3_SBhJ-Zw/company-logo_200_200/0/1537804728723/bizmetric_logo?e=2147483647&v=beta&t=EMU4PE70vxa2ny6-4PBGIM4J3jqDF-AQsYdjR7T-0JQ" alt="Bizmetric"/>,
-        <img src="https://seeklogo.com/images/M/medium-2020-new-logo-4DD1CA1BFF-seeklogo.com.png" alt="Medium"/>,
+        <img src="img_1.png" alt="Bell"/>,
+        <img src="img_2.png" alt="Imaca"/>,
+        <img src="img_2.png" alt="Imaca"/>,
         <img src="https://media.licdn.com/dms/image/C510BAQFJe2R-Ua3RLw/company-logo_200_200/0/1570778089350?e=2147483647&v=beta&t=Veq5LfpVHF1P7Aa-pp7E7vA-MwHeILIZinlY_ug2aDE" alt="CCR Technologies"/>,
     ];
 
@@ -48,7 +50,7 @@ export default function EducationAndExperience() {
             <div className="text-center mb-20">
                 <MdOutlineWork className="w-20 h-20 inline-block mb-4"/>
                 <h1 className="sm:text-4xl text-3xl font-medium title-font text-white mb-4">
-                   Experience Et Formations
+                    Experience &amp; Education
                 </h1>
 
             </div>
@@ -87,7 +89,7 @@ export default function EducationAndExperience() {
                                         marginTop: '10px'
                                     }}
                                 >
-                                    Télécharger l'attestation
+                                    Download the certificate
                                 </button>
                             }
                         </VerticalTimelineElement>

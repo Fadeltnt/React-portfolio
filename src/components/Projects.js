@@ -10,7 +10,7 @@ export default function Projects() {
                 <div className="flex flex-col w-full mb-20">
                     <VscVscodeInsiders className="mx-auto inline-block w-20 h-20 mb-4"/>
                     <h1 className="sm:text-4xl text-3xl font-medium title-font mb-4 text-white">
-                        Apps I've Built
+                        Projects
                     </h1>
                     <p className="lg:w-2/3 mx-auto leading-relaxed text-base">
                         I've had the opportunity to create a variety of applications that solve real-world problems. Each project has allowed me to expand my skills and work with different technologies. From building responsive web applications to developing complex backend systems, my experience showcases my versatility and commitment to quality.

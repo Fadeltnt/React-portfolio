@@ -7,11 +7,10 @@ export default function About() {
                 <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
                     <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-white">
                         Hi, I'm Fadel
-                        <br className="hidden lg:inline-block"/> I love to build amazing apps.
+                        <br className="hidden lg:inline-block"/> Software Engineering student.
                     </h1>
                     <p className="mb-8 leading-relaxed">
-                        Welcome to my portfolio! I'm Fadel Tinto, a software engineering student at Université Laval with a passion for web development.
-                        I have experience in various projects, using technologies like Python, Flask, React, and Express. I enjoy creating elegant and efficient solutions to complex problems. Explore my work to learn more about my skills and achievements.
+                        I’m a third-year student at Université Laval, a nerd with a love for manga and video games, and I’m passionate about web development.I enjoy crafting elegant and efficient solutions to complex problems. Explore my work to discover more about my skills and achievements.
                     </p>
                     <div className="flex justify-center">
                         <a
