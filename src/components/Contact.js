@@ -20,15 +20,10 @@ export default function Contact() {
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: encode({ "form-name": "contact", name, email, message }),
         })
-            .then(() => {
-                alert("Message sent!");
-                console.log("Message sent successfully");
-            })
-            .catch((error) => {
-                alert("Failed to send message");
-                console.error("Error:", error);
-            });
+            .then(() => alert("Message sent!"))
+            .catch((error) => alert(error));
     }
+
     return (
         <section id="contact" className="relative">
             <div className="container px-5 py-10 mx-auto flex sm:flex-nowrap flex-wrap">
@@ -58,8 +53,7 @@ export default function Contact() {
                             <h2 className="title-font font-semibold text-white tracking-widest text-xs">
                                 EMAIL
                             </h2>
-                            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                            <a className="text-indigo-400 leading-relaxed">
+                            <a href="mailto:fadeltinto@gmail.com" className="text-indigo-400 leading-relaxed">
                                 fadeltinto@gmail.com
                             </a>
                             <h2 className="title-font font-semibold text-white tracking-widest text-xs mt-4">
@@ -72,6 +66,7 @@ export default function Contact() {
                 <form
                     name="contact"
                     method="POST"
+                    action="/"
                     data-netlify="true"
                     netlify-honeypot="bot-field"
                     onSubmit={handleSubmit}
@@ -80,8 +75,7 @@ export default function Contact() {
                         Contact
                     </h2>
                     <p className="leading-relaxed mb-5">
-                        Got a question or proposal, or just want
-                        to say hello? Go ahead.
+                        Got a question or proposal, or just want to say hello? Go ahead.
                     </p>
                     <div hidden>
                         <input type="hidden" name="form-name" value="contact" />
