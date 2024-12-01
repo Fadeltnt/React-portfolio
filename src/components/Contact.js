@@ -20,10 +20,15 @@ export default function Contact() {
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: encode({ "form-name": "contact", name, email, message }),
         })
-            .then(() => alert("Message sent!"))
-            .catch((error) => alert(error));
+            .then(() => {
+                alert("Message sent!");
+                console.log("Message sent successfully");
+            })
+            .catch((error) => {
+                alert("Failed to send message");
+                console.error("Error:", error);
+            });
     }
-
     return (
         <section id="contact" className="relative">
             <div className="container px-5 py-10 mx-auto flex sm:flex-nowrap flex-wrap">
