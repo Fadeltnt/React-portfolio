@@ -58,7 +58,7 @@ export default function Education() {
         <section className="nothing-section" ref={sectionRef}>
             <div className="nothing-container">
                 <div 
-                    className="text-center mb-16 nothing-fade-in"
+                    className="text-center mb-20 nothing-fade-in"
                     style={{
                         opacity: isSectionVisible ? 1 : 0,
                         transform: isSectionVisible ? 'translateY(0)' : 'translateY(30px)',
@@ -69,110 +69,105 @@ export default function Education() {
                     </h1>
                 </div>
                 
-                {/* Design Nothing Essential Apps - Cartes modernes */}
-                <div className="max-w-5xl mx-auto space-y-3 sm:space-y-4">
-                    {timelineItems.map((item, index) => (
-                        <div
-                            key={index}
-                            className="group nothing-fade-in"
-                            style={{ animationDelay: `${index * 0.1}s` }}>
+                {/* Design Nothing Essential Apps - Cartes modernes avec Timeline */}
+                <div className="max-w-5xl mx-auto relative">
+                    {/* Ligne verticale de timeline technique (Desktop) */}
+                    <div className="absolute left-[35px] top-0 bottom-0 w-[1px] border-l border-dashed border-white/10 hidden md:block"></div>
+
+                    <div className="space-y-6">
+                        {timelineItems.map((item, index) => (
                             <div
-                                className="relative transition-all duration-300 group-active:bg-[#2C2C2E] md:group-hover:bg-[#2C2C2E]"
-                                style={{
-                                    background: '#1C1C1E',
-                                    border: '1px solid rgba(255, 255, 255, 0.08)',
-                                }}>
-                                {/* Indicateur gauche */}
-                                <div 
-                                    className="absolute left-0 top-0 bottom-0 bg-white opacity-0 group-active:opacity-100 md:group-hover:opacity-100 transition-opacity duration-300"
-                                    style={{width: '2px'}}
-                                ></div>
+                                key={index}
+                                className="group nothing-fade-in relative md:pl-24"
+                                style={{ animationDelay: `${index * 0.1}s` }}>
                                 
-                                {/* Mobile: Layout vertical compact */}
-                                <div className="flex flex-col md:flex-row items-start md:items-center p-5 sm:p-8 gap-5 sm:gap-8">
-                                    {/* Date et icône */}
-                                    <div className="flex items-center gap-4 sm:gap-5 w-full md:w-auto md:min-w-[220px]">
-                                        <div 
-                                            className="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center flex-shrink-0 p-2"
-                                            style={{
-                                                border: '1px solid rgba(255, 255, 255, 0.12)',
-                                                background: '#000000'
-                                            }}>
-                                            {icons[index]}
-                                        </div>
-                                        <div className="flex-1 md:flex-none">
+                                {/* Point de connexion (Desktop) */}
+                                <div className="absolute left-[31px] top-1/2 -translate-y-1/2 w-[9px] h-[9px] bg-[#050505] border border-white/40 hidden md:block z-10 group-hover:bg-white group-hover:border-white transition-all duration-300 rotate-45"></div>
+
+                                <div
+                                    className="relative transition-all duration-300 hover:bg-[#1C1C1E]/50 overflow-hidden"
+                                    style={{
+                                        background: 'rgba(20, 20, 20, 0.3)',
+                                        border: '1px solid rgba(255, 255, 255, 0.08)',
+                                    }}>
+                                    
+                                    {/* Éléments techniques aux coins */}
+                                    <div className="absolute top-0 right-0 w-2 h-2 border-t border-r border-white/10"></div>
+                                    <div className="absolute bottom-0 left-0 w-2 h-2 border-b border-l border-white/10"></div>
+
+                                    {/* Mobile: Layout vertical compact */}
+                                    <div className="flex flex-col md:flex-row items-start md:items-center p-5 sm:p-8 gap-5 sm:gap-8">
+                                        {/* Date et icône */}
+                                        <div className="flex items-center gap-4 sm:gap-5 w-full md:w-auto md:min-w-[220px]">
                                             <div 
-                                                className="text-[10px] sm:text-xs text-white opacity-50"
+                                                className="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center flex-shrink-0 p-2 relative"
                                                 style={{
-                                                    fontFamily: "'Nothing', monospace",
-                                                    letterSpacing: '0.12em',
-                                                    lineHeight: '1.5'
+                                                    border: '1px solid rgba(255, 255, 255, 0.12)',
+                                                    background: '#0a0a0a'
                                                 }}>
-                                                {item.date}
+                                                {/* Petit détail tech sur l'icone */}
+                                                <div className="absolute -top-1 -left-1 w-2 h-2 border-t border-l border-white/20"></div>
+                                                {icons[index]}
+                                            </div>
+                                            <div className="flex-1 md:flex-none">
+                                                <div 
+                                                    className="text-[10px] sm:text-xs text-white opacity-50 mb-1"
+                                                    style={{
+                                                        fontFamily: "'Nothing', monospace",
+                                                        letterSpacing: '0.12em',
+                                                    }}>
+                                                    {item.date}
+                                                </div>
+                                                <div className="w-8 h-[1px] bg-white/10"></div>
                                             </div>
                                         </div>
-                                    </div>
-                                    
-                                    {/* Contenu principal */}
-                                    <div className="flex-1 w-full md:w-auto">
-                                        <h3 
-                                            className="text-base sm:text-lg mb-2 text-white group-active:opacity-100 md:group-hover:opacity-100 transition-opacity duration-300"
-                                            style={{
-                                                fontFamily: "'Nothing', monospace",
-                                                letterSpacing: '0.05em',
-                                                opacity: 0.9,
-                                                lineHeight: '1.3'
-                                            }}>
-                                            {item.title.split('\n').map((line, i) => (
-                                                <React.Fragment key={i}>
-                                                    {line}
-                                                    {i < item.title.split('\n').length - 1 && <br />}
-                                                </React.Fragment>
-                                            ))}
-                                        </h3>
-                                        <p 
-                                            className="text-xs sm:text-sm text-white opacity-60 mb-3"
-                                            style={{
-                                                fontFamily: "'Emilio Thin', sans-serif",
-                                                fontWeight: 100
-                                            }}>
-                                            {item.location}
-                                        </p>
-                                        {item.certificate && (
-                                            <button
-                                                onClick={() => window.open(item.certificate)}
-                                                className="mt-2 px-3 sm:px-4 py-1.5 sm:py-2 text-[10px] sm:text-xs transition-all duration-300"
+                                        
+                                        {/* Contenu principal */}
+                                        <div className="flex-1 w-full md:w-auto">
+                                            <h3 
+                                                className="text-base sm:text-lg mb-2 text-white group-hover:text-glow transition-all duration-300"
                                                 style={{
-                                                    background: 'transparent',
-                                                    border: '1px solid rgba(255, 255, 255, 0.2)',
-                                                    color: 'white',
                                                     fontFamily: "'Nothing', monospace",
-                                                    letterSpacing: '0.05em'
-                                                }}
-                                                onMouseEnter={(e) => {
-                                                    e.target.style.background = 'rgba(255, 255, 255, 0.1)';
-                                                    e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
-                                                }}
-                                                onMouseLeave={(e) => {
-                                                    e.target.style.background = 'transparent';
-                                                    e.target.style.borderColor = 'rgba(255, 255, 255, 0.2)';
-                                                }}
-                                                onTouchStart={(e) => {
-                                                    e.target.style.background = 'rgba(255, 255, 255, 0.1)';
-                                                    e.target.style.borderColor = 'rgba(255, 255, 255, 0.3)';
-                                                }}
-                                                onTouchEnd={(e) => {
-                                                    e.target.style.background = 'transparent';
-                                                    e.target.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                                                    letterSpacing: '0.05em',
+                                                    opacity: 0.9,
+                                                    lineHeight: '1.3'
                                                 }}>
-                                                {language === 'fr' ? 'TÉLÉCHARGER LE CERTIFICAT' : 'DOWNLOAD CERTIFICATE'}
-                                            </button>
-                                        )}
+                                                {item.title.split('\n').map((line, i) => (
+                                                    <React.Fragment key={i}>
+                                                        {line}
+                                                        {i < item.title.split('\n').length - 1 && <br />}
+                                                    </React.Fragment>
+                                                ))}
+                                            </h3>
+                                            <p 
+                                                className="text-xs sm:text-sm text-white opacity-60 mb-3"
+                                                style={{
+                                                    fontFamily: "'Emilio Thin', sans-serif",
+                                                    fontWeight: 100
+                                                }}>
+                                                {item.location}
+                                            </p>
+                                            {item.certificate && (
+                                                <button
+                                                    onClick={() => window.open(item.certificate)}
+                                                    className="mt-2 px-3 sm:px-4 py-1.5 sm:py-2 text-[10px] sm:text-xs transition-all duration-300 group/btn relative overflow-hidden"
+                                                    style={{
+                                                        background: 'transparent',
+                                                        border: '1px solid rgba(255, 255, 255, 0.2)',
+                                                        color: 'white',
+                                                        fontFamily: "'Nothing', monospace",
+                                                        letterSpacing: '0.05em'
+                                                    }}>
+                                                    <span className="relative z-10">{language === 'fr' ? 'CERTIFICAT' : 'CERTIFICATE'}</span>
+                                                    <div className="absolute inset-0 bg-white/10 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300"></div>
+                                                </button>
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>

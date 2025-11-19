@@ -13,246 +13,103 @@ export default function ProjectCard({ project, index, totalProjects, getImagePat
             key={project.image}
             target="_blank"
             rel="noopener noreferrer"
-            className="block group"
+            className="block group relative mb-32 last:mb-0"
             ref={ref}
             style={{
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? 'translateY(0)' : 'translateY(40px)',
-                transition: `all 0.8s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.15}s`
+                transition: `all 0.8s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.1}s`
             }}>
             
-            {/* Carte principale avec layout moodboard */}
-            <div 
-                className="relative transition-all duration-300 group-active:bg-[#2C2C2E] md:group-hover:bg-[#2C2C2E] hover-lift"
-                style={{
-                    background: '#1C1C1E',
-                    border: '1px solid rgba(255, 255, 255, 0.08)'
-                }}>
-                {/* Indicateur gauche */}
-                <div 
-                    className="absolute left-0 top-0 bottom-0 bg-white opacity-0 group-active:opacity-100 md:group-hover:opacity-100 transition-opacity duration-300"
-                    style={{width: '2px'}}
-                ></div>
+            {/* Croix de repérage techniques globales */}
+            <div className="hidden md:block absolute -left-8 top-0 tech-cross opacity-20"></div>
+            <div className="hidden md:block absolute -right-8 bottom-0 tech-cross opacity-20"></div>
 
-                {/* Mobile: Layout vertical empilé */}
-                <div className="flex flex-col md:hidden">
-                    {/* Header mobile avec numéro et tech */}
-                    <div className="flex items-center justify-between p-4 border-b"
-                        style={{borderColor: 'rgba(255, 255, 255, 0.08)'}}>
-                        <div 
-                            className="text-xs text-white opacity-40"
-                            style={{
-                                fontFamily: "'Nothing', monospace",
-                                letterSpacing: '0.15em'
-                            }}>
-                            {String(index + 1).padStart(2, '0')} / {String(totalProjects).padStart(2, '0')}
-                        </div>
-                        <div 
-                            className="text-xs text-white opacity-50 uppercase"
-                            style={{
-                                fontFamily: "'Nothing', monospace",
-                                letterSpacing: '0.12em'
-                            }}>
-                            {project.subtitle}
+            <div className={`flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} gap-8 md:gap-20 items-center`}>
+                
+                {/* Zone Image Moodboard */}
+                <div className="w-full md:w-7/12 relative group-hover:z-10">
+                    {/* Éléments décoratifs techniques autour de l'image */}
+                    <div className="absolute -top-4 -left-4 w-24 h-24 border-t border-l border-white opacity-10 hidden md:block transition-all duration-500 group-hover:w-32 group-hover:h-32"></div>
+                    <div className="absolute -bottom-4 -right-4 w-24 h-24 border-b border-r border-white opacity-10 hidden md:block transition-all duration-500 group-hover:w-32 group-hover:h-32"></div>
+
+                    {/* Conteneur principal image */}
+                    <div className="relative">
+                         {/* Coins techniques */}
+                        <div className="nothing-corner-bracket bracket-tl"></div>
+                        <div className="nothing-corner-bracket bracket-tr"></div>
+                        <div className="nothing-corner-bracket bracket-bl"></div>
+                        <div className="nothing-corner-bracket bracket-br"></div>
+
+                        {/* Image Principale */}
+                        <div className="relative overflow-hidden aspect-[16/10] bg-[#0a0a0a] transition-all duration-500">
+                            <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-5 transition-opacity duration-300 z-10"></div>
+                            <img
+                                alt={project.title}
+                                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 grayscale group-hover:grayscale-0"
+                                src={getImagePath(project.image)}
+                                onError={(e) => {
+                                    e.target.src = project.image;
+                                }}
+                            />
+                            
+                            {/* Overlay Technique sur l'image */}
+                            <div className="absolute top-4 right-4 z-20 flex flex-col items-end opacity-60 mix-blend-difference">
+                                <span className="text-[10px] font-mono tracking-widest text-white">IMG.0{index + 1}</span>
+                                <span className="text-[10px] font-mono tracking-widest text-white">RAW_DATA</span>
+                            </div>
                         </div>
                     </div>
 
-                    {/* Image principale mobile - pleine largeur */}
-                    <div 
-                        className="relative w-full overflow-hidden"
-                        style={{
-                            height: '280px',
-                            background: '#000000'
-                        }}>
-                        <img
-                            alt={project.title}
-                            className="w-full h-full object-cover transition-transform duration-500 group-active:scale-105"
-                            src={getImagePath(project.image)}
-                            onError={(e) => {
-                                e.target.src = project.image;
-                            }}
-                        />
-                    </div>
-
-                    {/* Contenu mobile */}
-                    <div className="p-6 space-y-4">
-                        <h2 
-                            className="text-2xl text-white"
-                            style={{
-                                fontFamily: "'Nothing', monospace",
-                                letterSpacing: '0.05em',
-                                lineHeight: '1.2'
-                            }}>
-                            {project.title}
-                        </h2>
-                        
-                        <p 
-                            className="text-sm text-white opacity-70 leading-relaxed"
-                            style={{
-                                fontFamily: "'Emilio Thin', sans-serif",
-                                fontWeight: 100,
-                                letterSpacing: '0.02em'
-                            }}>
-                            {project.description}
-                        </p>
-
-                        {/* Lien mobile */}
-                        <div className="flex items-center gap-3 pt-4"
-                            style={{
-                                borderTop: '1px solid rgba(255, 255, 255, 0.08)'
-                            }}>
-                            <span 
-                                className="text-xs text-white opacity-60"
-                                style={{
-                                    fontFamily: "'Nothing', monospace",
-                                    letterSpacing: '0.1em'
-                                }}>
-                                {language === 'fr' ? 'VOIR LE PROJET' : 'VIEW PROJECT'}
+                    {/* Image secondaire flottante (Moodboard effect) */}
+                    <div className={`hidden md:block absolute -bottom-8 ${isEven ? '-right-8' : '-left-8'} w-40 aspect-square bg-[#0a0a0a] border border-white/10 z-20 overflow-hidden transition-transform duration-500 group-hover:translate-y-[-10px] shadow-2xl`}>
+                         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20"></div>
+                         <div className="w-full h-full flex flex-col items-center justify-center p-4">
+                            <div className="text-[10px] font-mono text-white/40 mb-2">PROJECT_ID</div>
+                            <div className="text-2xl font-mono text-white/80 tracking-tighter">0{index + 1}</div>
+                            <div className="w-full h-[1px] bg-white/10 my-2"></div>
+                            <span className="font-mono text-[8px] text-white/30 tracking-[0.2em] text-center">
+                                {project.subtitle ? project.subtitle.split(' ')[0] : 'APP'}
                             </span>
-                            <svg 
-                                className="w-4 h-4 text-white opacity-60" 
-                                fill="none" 
-                                stroke="currentColor" 
-                                viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
-                            </svg>
-                        </div>
+                         </div>
                     </div>
                 </div>
 
-                {/* Desktop: Layout horizontal asymétrique */}
-                <div className={`hidden md:flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-8 p-8 lg:p-12`}>
-                    {/* Section images - Moodboard */}
-                    <div className={`flex-1 ${isEven ? 'lg:pr-8' : 'lg:pl-8'}`}>
-                        <div className="grid grid-cols-2 gap-3 h-full">
-                            {/* Image principale - grande */}
-                            <div 
-                                className="col-span-2 row-span-2 relative overflow-hidden"
-                                style={{
-                                    minHeight: '400px',
-                                    background: '#000000',
-                                    border: '1px solid rgba(255, 255, 255, 0.08)'
-                                }}>
-                                <img
-                                    alt={project.title}
-                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                    src={getImagePath(project.image)}
-                                    onError={(e) => {
-                                        e.target.src = project.image;
-                                    }}
-                                />
-                            </div>
-                            
-                            {/* Images secondaires - petites */}
-                            <div 
-                                className="relative overflow-hidden"
-                                style={{
-                                    minHeight: '180px',
-                                    background: '#000000',
-                                    border: '1px solid rgba(255, 255, 255, 0.08)'
-                                }}>
-                                <div className="w-full h-full bg-gradient-to-br from-[#1C1C1E] to-[#000000] flex items-center justify-center">
-                                    <div 
-                                        className="text-xs text-white opacity-30"
-                                        style={{
-                                            fontFamily: "'Nothing', monospace",
-                                            letterSpacing: '0.15em'
-                                        }}>
-                                        {String(index + 1).padStart(2, '0')}
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div 
-                                className="relative overflow-hidden"
-                                style={{
-                                    minHeight: '180px',
-                                    background: '#000000',
-                                    border: '1px solid rgba(255, 255, 255, 0.08)'
-                                }}>
-                                <div className="w-full h-full bg-gradient-to-br from-[#000000] to-[#1C1C1E] flex items-center justify-center">
-                                    <div 
-                                        className="text-xs text-white opacity-20"
-                                        style={{
-                                            fontFamily: "'Nothing', monospace",
-                                            letterSpacing: '0.15em'
-                                        }}>
-                                        {project.subtitle.toUpperCase()}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                {/* Zone Contenu */}
+                <div className={`w-full md:w-5/12 flex flex-col ${isEven ? 'md:text-left items-start' : 'md:text-right items-end'} pt-4 md:pt-0 relative`}>
+                    
+                    {/* Ligne décorative reliée au contenu */}
+                    <div className={`hidden md:block absolute top-0 ${isEven ? '-left-10' : '-right-10'} w-[1px] h-20 bg-gradient-to-b from-white/20 to-transparent`}></div>
+
+                    {/* Header Technique */}
+                    <div className={`flex items-center gap-4 mb-6 text-xs tracking-[0.2em] text-white/40 font-mono`}>
+                        <span>N° {String(index + 1).padStart(2, '0')}</span>
+                        <div className="w-12 h-[1px] bg-white/20"></div>
+                        <span>{project.subtitle ? project.subtitle.toUpperCase() : 'PROJECT'}</span>
                     </div>
 
-                    {/* Section contenu - Informations */}
-                    <div className={`flex-1 flex flex-col justify-between ${isEven ? 'lg:pl-8 lg:border-l' : 'lg:pr-8 lg:border-r'}`}
-                        style={{borderColor: 'rgba(255, 255, 255, 0.08)'}}>
-                        <div>
-                            <div 
-                                className="text-xs mb-4 text-white opacity-40"
-                                style={{
-                                    fontFamily: "'Nothing', monospace",
-                                    letterSpacing: '0.15em'
-                                }}>
-                                {String(index + 1).padStart(2, '0')} / {String(totalProjects).padStart(2, '0')}
-                            </div>
-                            
-                            <div 
-                                className="text-xs mb-3 text-white opacity-50 uppercase"
-                                style={{
-                                    fontFamily: "'Nothing', monospace",
-                                    letterSpacing: '0.12em'
-                                }}>
-                                {project.subtitle}
-                            </div>
-                            
-                            <h2 
-                                className="text-3xl mb-6 text-white group-hover:opacity-100 transition-opacity duration-300"
-                                style={{
-                                    fontFamily: "'Nothing', monospace",
-                                    letterSpacing: '0.05em',
-                                    opacity: 0.9,
-                                    lineHeight: '1.2'
-                                }}>
-                                {project.title}
-                            </h2>
-                            
-                            <p 
-                                className="text-base mb-8 text-white opacity-70 leading-relaxed"
-                                style={{
-                                    fontFamily: "'Emilio Thin', sans-serif",
-                                    fontWeight: 100,
-                                    letterSpacing: '0.02em'
-                                }}>
-                                {project.description}
-                            </p>
-                        </div>
+                    {/* Titre */}
+                    <h2 className="text-4xl md:text-5xl lg:text-6xl mb-8 text-white font-normal leading-tight"
+                        style={{ fontFamily: "'Nothing', sans-serif" }}>
+                        {project.title}
+                    </h2>
 
-                        {/* Lien vers le projet */}
-                        <div className="flex items-center gap-3 pt-6"
-                            style={{
-                                borderTop: '1px solid rgba(255, 255, 255, 0.08)'
-                            }}>
-                            <span 
-                                className="text-sm text-white opacity-60 group-hover:opacity-100 transition-opacity duration-300"
-                                style={{
-                                    fontFamily: "'Nothing', monospace",
-                                    letterSpacing: '0.1em'
-                                }}>
-                                {language === 'fr' ? 'VOIR LE PROJET' : 'VIEW PROJECT'}
-                            </span>
-                            <svg 
-                                className="w-5 h-5 text-white opacity-60 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" 
-                                fill="none" 
-                                stroke="currentColor" 
-                                viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5l7 7-7 7" />
-                            </svg>
-                        </div>
+                    {/* Description */}
+                    <p className="text-sm md:text-base text-white/60 leading-relaxed mb-10 max-w-md"
+                       style={{ fontFamily: "'Emilio Thin', sans-serif" }}>
+                        {project.description}
+                    </p>
+
+                    {/* Bouton custom Nothing OS */}
+                    <div className={`flex items-center gap-3 group-hover:gap-6 transition-all duration-300`}>
+                         <span className="text-xs tracking-[0.2em] text-white border border-white/20 px-6 py-3 bg-black hover:bg-white hover:text-black transition-colors duration-300 uppercase font-mono">
+                            {language === 'fr' ? 'Voir le projet' : 'View Project'}
+                         </span>
+                         <div className="w-12 h-[1px] bg-white/40 group-hover:bg-white transition-colors duration-300"></div>
                     </div>
+
                 </div>
             </div>
         </a>
     );
 }
-

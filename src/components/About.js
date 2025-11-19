@@ -7,7 +7,7 @@ export default function About() {
     const { language } = useLanguage();
     const t = translations[language];
     const [displayedText, setDisplayedText] = useState('');
-    const [isTyping, setIsTyping] = useState(true);
+    const [showSubtitle, setShowSubtitle] = useState(false);
     const [ref, isVisible] = useScrollAnimation({ threshold: 0.2, once: true });
     
     const fullText = language === 'fr' 
@@ -20,36 +20,62 @@ export default function About() {
 
     useEffect(() => {
         setDisplayedText('');
-        setIsTyping(true);
-        let currentIndex = 0;
+        setShowSubtitle(false);
         
-        // Vitesse variable pour effet gaming plus réaliste
-        const getTypingSpeed = (char) => {
-            // Espaces et virgules plus rapides
-            if (char === ' ' || char === ',') return 30;
-            // Voyelles plus rapides
-            if (/[aeiouAEIOU]/.test(char)) return 60;
-            // Consonnes normales
-            return 90;
-        };
+        let currentIndex = 0;
+        const randomChars = '!@#$%^&*()_+-=[]{}|;:,.<>?ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        
+        // Fonction pour générer un caractère aléatoire
+        const getRandomChar = () => randomChars[Math.floor(Math.random() * randomChars.length)];
         
         const typeNextChar = () => {
             if (currentIndex < fullText.length) {
-                const char = fullText[currentIndex];
-                setDisplayedText(fullText.substring(0, currentIndex + 1));
-                currentIndex++;
+                const isLastWord = currentIndex > fullText.lastIndexOf(' ');
                 
-                const speed = getTypingSpeed(char);
-                setTimeout(typeNextChar, speed);
+                // Effet scramble pour les derniers caractères (le nom)
+                if (isLastWord) {
+                    let scrambleCount = 0;
+                    const maxScrambles = 3; // Nombre de changements avant de fixer la lettre
+                    
+                    const scrambleInterval = setInterval(() => {
+                        const scrambled = fullText.substring(0, currentIndex) + getRandomChar();
+                        setDisplayedText(scrambled);
+                        scrambleCount++;
+                        
+                        if (scrambleCount >= maxScrambles) {
+                            clearInterval(scrambleInterval);
+                            setDisplayedText(fullText.substring(0, currentIndex + 1));
+                            currentIndex++;
+                            setTimeout(typeNextChar, 50); // Vitesse rapide pour le scramble
+                        }
+                    }, 40);
+                } else {
+                    // Typing normal pour le début
+                    setDisplayedText(fullText.substring(0, currentIndex + 1));
+                    currentIndex++;
+                    
+                    // Vitesse variable (plus rapide sur les voyelles)
+                    const char = fullText[currentIndex - 1];
+                    let speed = 80;
+                    if (/[aeiouAEIOU]/.test(char)) speed = 50;
+                    if (char === ' ' || char === ',') speed = 30;
+                    
+                    setTimeout(typeNextChar, speed);
+                }
             } else {
-                // Petit délai avant d'afficher le sous-titre
+                // Fin de l'animation du titre
                 setTimeout(() => {
-                    setIsTyping(false);
+                    setShowSubtitle(true);
                 }, 300);
             }
         };
         
-        typeNextChar();
+        // Démarrer l'animation après un court délai
+        const startTimeout = setTimeout(() => {
+            typeNextChar();
+        }, 500);
+        
+        return () => clearTimeout(startTimeout);
     }, [language, fullText]);
 
     return (
@@ -87,15 +113,25 @@ export default function About() {
                     {/* Contenu */}
                     <div className="w-full">
                         <h1 className="typing-title mb-6 sm:mb-8 text-white text-3xl sm:text-4xl md:text-5xl leading-tight">
-                            <span className={isTyping ? 'typing-animation' : ''} style={{fontFamily: "'Nothing', monospace"}}>
+                            {/* Titre avec curseur permanent */}
+                            <span className="typing-animation" style={{fontFamily: "'Nothing', monospace"}}>
                                 {displayedText}
                             </span>
-                            {!isTyping && (
-                                <>
-                                    <br className="hidden lg:inline-block"/> 
-                                    <span className="text-white text-opacity-90 block sm:inline" style={{fontFamily: "'Nothing', monospace", letterSpacing: '0.08em'}}>{subtitle}</span>
-                                </>
-                            )}
+                            
+                            {/* Sous-titre qui apparaît après */}
+                            <span 
+                                className={`text-white text-opacity-90 block sm:inline transition-opacity duration-500 ${showSubtitle ? 'opacity-100' : 'opacity-0'}`}
+                                style={{
+                                    fontFamily: "'Nothing', monospace", 
+                                    letterSpacing: '0.08em'
+                                }}>
+                                {showSubtitle && (
+                                    <>
+                                        <br className="hidden lg:inline-block"/>
+                                        {subtitle}
+                                    </>
+                                )}
+                            </span>
                         </h1>
                         <p className="nothing-subtitle mb-8 sm:mb-12 leading-relaxed max-w-2xl mx-auto text-sm sm:text-base">
                             {t.about.description}

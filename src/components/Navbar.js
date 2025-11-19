@@ -19,7 +19,7 @@ export default function Navbar() {
     };
 
     return (
-        <header className="bg-black md:sticky top-0 z-50 sharp" style={{borderBottom: '1px solid rgba(255, 255, 255, 0.12)'}}>
+        <header className="bg-black/80 backdrop-blur-md md:sticky top-0 z-50 sharp transition-all duration-300" style={{borderBottom: '1px solid rgba(255, 255, 255, 0.08)'}}>
             <div className="container mx-auto flex flex-wrap p-4 sm:p-6 flex-col md:flex-row items-center justify-between">
                 {/* Logo */}
                 <a 

@@ -31,65 +31,49 @@ export default function Contact() {
     return (
         <section id="contact" className="nothing-section">
             <div className="nothing-container flex flex-col lg:flex-row gap-6 sm:gap-8">
-                {/* Carte avec carte - Mobile: pleine largeur, Desktop: 2/3 */}
-                <div className="w-full lg:w-2/3 nothing-card overflow-hidden flex items-end justify-start relative min-h-[280px] sm:min-h-[400px] sharp">
-                    <iframe
-                        width="100%"
-                        height="100%"
-                        title="map"
-                        className="absolute inset-0"
-                        frameBorder={0}
-                        marginHeight={0}
-                        marginWidth={0}
-                        style={{filter: "opacity(0.3) grayscale(100%)"}}
-                        src="https://www.google.com/maps/embed/v1/place?q=Sainte+Foy+Quebec&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"
-                    />
-                    <div className="bg-black relative flex flex-col sm:flex-row flex-wrap py-4 sm:py-6 w-full sharp" style={{border: '1px solid rgba(255, 255, 255, 0.12)'}}>
-                        <div className="w-full sm:w-1/2 px-4 sm:px-6 mb-4 sm:mb-0">
-                            <h2 
-                                className="font-medium text-white tracking-widest text-[10px] sm:text-xs mb-2"
-                                style={{
-                                    fontFamily: "'Nothing', monospace",
-                                    letterSpacing: '0.1em'
-                                }}>
-                                {t.contact.address}
-                            </h2>
-                            <p 
-                                className="text-white text-opacity-70 text-xs sm:text-sm"
-                                style={{
-                                    fontFamily: "'Emilio Thin', sans-serif",
-                                    fontWeight: 100
-                                }}>
-                                Chemin Sainte Foy. <br/>
-                                Quebec, QC
-                            </p>
-                        </div>
-                        <div className="w-full sm:w-1/2 px-4 sm:px-6">
-                            <h2 
+                {/* Informations de contact - Mobile: pleine largeur, Desktop: 1/3 */}
+                <div className="w-full lg:w-1/3 flex flex-col">
+                    <h2 
+                        className="nothing-title mb-2 text-white text-2xl sm:text-3xl md:text-4xl mb-6"
+                        style={{
+                            fontFamily: "'Nothing', monospace"
+                        }}>
+                        {t.contact.title}
+                    </h2>
+                    <p 
+                        className="nothing-subtitle mb-8 text-sm sm:text-base">
+                        {t.contact.description}
+                    </p>
+                    
+                    <div className="space-y-6">
+                        <div>
+                            <h3 
                                 className="font-medium text-white tracking-widest text-[10px] sm:text-xs mb-2"
                                 style={{
                                     fontFamily: "'Nothing', monospace",
                                     letterSpacing: '0.1em'
                                 }}>
                                 {t.contact.email}
-                            </h2>
+                            </h3>
                             <a 
                                 href="mailto:fadeltinto@gmail.com" 
-                                className="text-white text-opacity-80 hover:text-white hover:text-opacity-100 transition-colors duration-200 text-xs sm:text-sm block mb-4"
+                                className="text-white text-opacity-80 hover:text-white hover:text-opacity-100 transition-colors duration-200 text-xs sm:text-sm block"
                                 style={{
                                     fontFamily: "'Emilio Thin', sans-serif",
                                     fontWeight: 100
                                 }}>
                                 fadeltinto@gmail.com
                             </a>
-                            <h2 
+                        </div>
+                        <div>
+                            <h3 
                                 className="font-medium text-white tracking-widest text-[10px] sm:text-xs mb-2"
                                 style={{
                                     fontFamily: "'Nothing', monospace",
                                     letterSpacing: '0.1em'
                                 }}>
                                 {t.contact.phone}
-                            </h2>
+                            </h3>
                             <p 
                                 className="text-white text-opacity-70 text-xs sm:text-sm"
                                 style={{
@@ -99,10 +83,28 @@ export default function Contact() {
                                 438-778-4099
                             </p>
                         </div>
+                        <div>
+                            <h3 
+                                className="font-medium text-white tracking-widest text-[10px] sm:text-xs mb-2"
+                                style={{
+                                    fontFamily: "'Nothing', monospace",
+                                    letterSpacing: '0.1em'
+                                }}>
+                                {t.contact.address}
+                            </h3>
+                            <p 
+                                className="text-white text-opacity-70 text-xs sm:text-sm"
+                                style={{
+                                    fontFamily: "'Emilio Thin', sans-serif",
+                                    fontWeight: 100
+                                }}>
+                                Québec
+                            </p>
+                        </div>
                     </div>
                 </div>
                 
-                {/* Formulaire - Mobile: pleine largeur, Desktop: 1/3 */}
+                {/* Formulaire - Mobile: pleine largeur, Desktop: 2/3 */}
                 <form
                     name="contact"
                     method="POST"
@@ -110,18 +112,7 @@ export default function Contact() {
                     data-netlify="true"
                     netlify-honeypot="bot-field"
                     onSubmit={handleSubmit}
-                    className="w-full lg:w-1/3 flex flex-col">
-                    <h2 
-                        className="nothing-title mb-2 text-white text-2xl sm:text-3xl md:text-4xl"
-                        style={{
-                            fontFamily: "'Nothing', monospace"
-                        }}>
-                        {t.contact.title}
-                    </h2>
-                    <p 
-                        className="nothing-subtitle mb-6 sm:mb-8 text-sm sm:text-base">
-                        {t.contact.description}
-                    </p>
+                    className="w-full lg:w-2/3 flex flex-col">
                     {/* Champs cachés nécessaires pour Netlify */}
                     <div hidden>
                         <input type="hidden" name="form-name" value="contact"/>
