@@ -1,6 +1,10 @@
 import React from "react";
+import { useLanguage } from "../contexts/LanguageContext";
+import { translations } from "../translations";
 
 export default function Contact() {
+    const { language } = useLanguage();
+    const t = translations[language];
     const [name, setName] = React.useState("");
     const [email, setEmail] = React.useState("");
     const [message, setMessage] = React.useState("");
@@ -20,15 +24,15 @@ export default function Contact() {
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: encode({ "form-name": "contact", name, email, message }),
         })
-            .then(() => alert("Message sent!"))
+            .then(() => alert(language === 'fr' ? "Message envoyé !" : "Message sent!"))
             .catch((error) => alert(error));
     }
 
     return (
-        <section id="contact" className="relative">
-            <div className="container px-5 py-10 mx-auto flex sm:flex-nowrap flex-wrap">
-                <div
-                    className="lg:w-2/3 md:w-1/2 bg-gray-900 rounded-lg overflow-hidden sm:mr-10 p-10 flex items-end justify-start relative">
+        <section id="contact" className="nothing-section">
+            <div className="nothing-container flex flex-col lg:flex-row gap-6 sm:gap-8">
+                {/* Carte avec carte - Mobile: pleine largeur, Desktop: 2/3 */}
+                <div className="w-full lg:w-2/3 nothing-card overflow-hidden flex items-end justify-start relative min-h-[280px] sm:min-h-[400px] sharp">
                     <iframe
                         width="100%"
                         height="100%"
@@ -37,87 +41,155 @@ export default function Contact() {
                         frameBorder={0}
                         marginHeight={0}
                         marginWidth={0}
-                        style={{filter: "opacity(0.7)"}}
+                        style={{filter: "opacity(0.3) grayscale(100%)"}}
                         src="https://www.google.com/maps/embed/v1/place?q=Sainte+Foy+Quebec&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"
                     />
-                    <div className="bg-gray-900 relative flex flex-wrap py-6 rounded shadow-md">
-                        <div className="lg:w-1/2 px-6">
-                            <h2 className="title-font font-semibold text-white tracking-widest text-xs">
-                                ADDRESS
+                    <div className="bg-black relative flex flex-col sm:flex-row flex-wrap py-4 sm:py-6 w-full sharp" style={{border: '1px solid rgba(255, 255, 255, 0.12)'}}>
+                        <div className="w-full sm:w-1/2 px-4 sm:px-6 mb-4 sm:mb-0">
+                            <h2 
+                                className="font-medium text-white tracking-widest text-[10px] sm:text-xs mb-2"
+                                style={{
+                                    fontFamily: "'Nothing', monospace",
+                                    letterSpacing: '0.1em'
+                                }}>
+                                {t.contact.address}
                             </h2>
-                            <p className="mt-1">
+                            <p 
+                                className="text-white text-opacity-70 text-xs sm:text-sm"
+                                style={{
+                                    fontFamily: "'Emilio Thin', sans-serif",
+                                    fontWeight: 100
+                                }}>
                                 Chemin Sainte Foy. <br/>
                                 Quebec, QC
                             </p>
                         </div>
-                        <div className="lg:w-1/2 px-6 mt-4 lg:mt-0">
-                            <h2 className="title-font font-semibold text-white tracking-widest text-xs">
-                                EMAIL
+                        <div className="w-full sm:w-1/2 px-4 sm:px-6">
+                            <h2 
+                                className="font-medium text-white tracking-widest text-[10px] sm:text-xs mb-2"
+                                style={{
+                                    fontFamily: "'Nothing', monospace",
+                                    letterSpacing: '0.1em'
+                                }}>
+                                {t.contact.email}
                             </h2>
-                            <a href="mailto:fadeltinto@gmail.com" className="text-indigo-400 leading-relaxed">
+                            <a 
+                                href="mailto:fadeltinto@gmail.com" 
+                                className="text-white text-opacity-80 hover:text-white hover:text-opacity-100 transition-colors duration-200 text-xs sm:text-sm block mb-4"
+                                style={{
+                                    fontFamily: "'Emilio Thin', sans-serif",
+                                    fontWeight: 100
+                                }}>
                                 fadeltinto@gmail.com
                             </a>
-                            <h2 className="title-font font-semibold text-white tracking-widest text-xs mt-4">
-                                PHONE
+                            <h2 
+                                className="font-medium text-white tracking-widest text-[10px] sm:text-xs mb-2"
+                                style={{
+                                    fontFamily: "'Nothing', monospace",
+                                    letterSpacing: '0.1em'
+                                }}>
+                                {t.contact.phone}
                             </h2>
-                            <p className="leading-relaxed">438-778-4099</p>
+                            <p 
+                                className="text-white text-opacity-70 text-xs sm:text-sm"
+                                style={{
+                                    fontFamily: "'Emilio Thin', sans-serif",
+                                    fontWeight: 100
+                                }}>
+                                438-778-4099
+                            </p>
                         </div>
                     </div>
                 </div>
+                
+                {/* Formulaire - Mobile: pleine largeur, Desktop: 1/3 */}
                 <form
                     name="contact"
                     method="POST"
                     action="/"
                     data-netlify="true"
                     netlify-honeypot="bot-field"
-                    className="lg:w-1/3 md:w-1/2 flex flex-col md:ml-auto w-full md:py-8 mt-8 md:mt-0">
-                    <h2 className="text-white sm:text-4xl text-3xl mb-1 font-medium title-font">
-                        Contact
+                    onSubmit={handleSubmit}
+                    className="w-full lg:w-1/3 flex flex-col">
+                    <h2 
+                        className="nothing-title mb-2 text-white text-2xl sm:text-3xl md:text-4xl"
+                        style={{
+                            fontFamily: "'Nothing', monospace"
+                        }}>
+                        {t.contact.title}
                     </h2>
-                    <p className="leading-relaxed mb-5">
-                        Got a question or proposal, or just want to say hello? Go ahead.
+                    <p 
+                        className="nothing-subtitle mb-6 sm:mb-8 text-sm sm:text-base">
+                        {t.contact.description}
                     </p>
                     {/* Champs cachés nécessaires pour Netlify */}
                     <div hidden>
                         <input type="hidden" name="form-name" value="contact"/>
                         <input type="hidden" name="bot-field"/>
                     </div>
-                    <div className="relative mb-4">
-                        <label htmlFor="name" className="leading-7 text-sm text-gray-400">
-                            Name
+                    <div className="relative mb-4 sm:mb-6">
+                        <label 
+                            htmlFor="name" 
+                            className="block text-xs sm:text-sm text-white text-opacity-70 mb-2 tracking-wider"
+                            style={{
+                                fontFamily: "'Nothing', monospace",
+                                letterSpacing: '0.05em'
+                            }}>
+                            {t.contact.name}
                         </label>
                         <input
                             type="text"
                             id="name"
                             name="name"
-                            className="w-full bg-gray-800 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            className="nothing-input text-sm sm:text-base"
+                            placeholder={t.contact.namePlaceholder || "Your name"}
                         />
                     </div>
-                    <div className="relative mb-4">
-                        <label htmlFor="email" className="leading-7 text-sm text-gray-400">
-                            Email
+                    <div className="relative mb-4 sm:mb-6">
+                        <label 
+                            htmlFor="email" 
+                            className="block text-xs sm:text-sm text-white text-opacity-70 mb-2 tracking-wider"
+                            style={{
+                                fontFamily: "'Nothing', monospace",
+                                letterSpacing: '0.05em'
+                            }}>
+                            {t.contact.email}
                         </label>
                         <input
                             type="email"
                             id="email"
                             name="email"
-                            className="w-full bg-gray-800 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            className="nothing-input text-sm sm:text-base"
+                            placeholder={t.contact.emailPlaceholder || "your.email@example.com"}
                         />
                     </div>
-                    <div className="relative mb-4">
-                        <label htmlFor="message" className="leading-7 text-sm text-gray-400">
-                            Message
+                    <div className="relative mb-4 sm:mb-6">
+                        <label 
+                            htmlFor="message" 
+                            className="block text-xs sm:text-sm text-white text-opacity-70 mb-2 tracking-wider"
+                            style={{
+                                fontFamily: "'Nothing', monospace",
+                                letterSpacing: '0.05em'
+                            }}>
+                            {t.contact.message}
                         </label>
                         <textarea
                             id="message"
                             name="message"
-                            className="w-full bg-gray-800 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 h-32 text-base outline-none text-gray-100 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
+                            value={message}
+                            onChange={(e) => setMessage(e.target.value)}
+                            className="nothing-input h-24 sm:h-32 resize-none text-sm sm:text-base"
+                            placeholder={t.contact.messagePlaceholder || "Your message..."}
                         />
                     </div>
                     <button
                         type="submit"
-                        className="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
-                        Submit
+                        className="nothing-button nothing-button-accent w-full text-sm sm:text-base">
+                        {t.contact.submit}
                     </button>
                 </form>
             </div>

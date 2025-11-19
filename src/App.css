@@ -1,33 +1,3 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
 /* Définition de la police personnalisée */
 @font-face {
   font-family: 'MHTIROGLA';
@@ -35,15 +5,286 @@
   font-weight: normal;
   font-style: normal;
 }
-@keyframes App-logo-spin {
+
+/* Police Nothing OTF pour navbar et titres */
+@font-face {
+  font-family: 'Nothing';
+  src: url('./Assets/fonts/NOTHING.otf.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Police Emilio Thin pour texte lisible */
+@font-face {
+  font-family: 'Emilio Thin';
+  src: url('./Assets/fonts/Emilio-Thin-.otf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+}
+
+/* Esthétique Essential Apps Dark Mode - Variables de couleurs */
+:root {
+  --nothing-black: #000000;
+  --nothing-white: #FFFFFF;
+  --nothing-gray: #1C1C1E;
+  --nothing-gray-light: #2C2C2E;
+  --nothing-gray-lighter: #3C3C3E;
+  --nothing-card-bg: #1C1C1E;
+  --nothing-card-hover: #2C2C2E;
+  --nothing-accent: rgba(255, 255, 255, 0.3);
+  --nothing-border: rgba(255, 255, 255, 0.08);
+  --nothing-border-strong: rgba(255, 255, 255, 0.15);
+  --nothing-glow: rgba(255, 255, 255, 0.05);
+}
+
+/* Reset et base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--nothing-black);
+  color: var(--nothing-white);
+  font-family: 'Emilio Thin', sans-serif;
+  font-weight: 100;
+  letter-spacing: -0.01em;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Police Nothing OTF pour navbar et grands titres */
+header, 
+.nothing-title,
+h1, h2 {
+  font-family: 'Nothing', 'MHTIROGLA', monospace;
+  letter-spacing: 0.05em;
+}
+
+/* Police lisible pour le reste - Emilio Thin */
+p, span, div, a, label, li {
+  font-family: 'Emilio Thin', sans-serif;
+  font-weight: 100;
+  letter-spacing: -0.01em;
+}
+
+/* Boutons et inputs gardent un poids plus fort pour la lisibilité */
+button, input, textarea {
+  font-family: 'Emilio Thin', sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+/* Flat Design 2D - Sharp et précis */
+.nothing-glow {
+  box-shadow: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nothing-glow:hover {
+  box-shadow: none;
+}
+
+/* Bordures nettes et précises - Flat Design */
+.nothing-border {
+  border: 1px solid var(--nothing-border);
+  border-radius: 0;
+}
+
+.nothing-border-thick {
+  border: 1px solid var(--nothing-border-strong);
+  border-radius: 0;
+}
+
+/* Sharp corners - Apple-like */
+.sharp {
+  border-radius: 0;
+}
+
+/* Flat card design */
+.flat-card {
+  background: var(--nothing-black);
+  border: 1px solid var(--nothing-border);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.flat-card:hover {
+  border-color: var(--nothing-border-strong);
+  background: var(--nothing-gray);
+}
+
+/* Texte avec effet de glow */
+.text-glow {
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.text-glow-accent {
+  text-shadow: 0 0 15px var(--nothing-accent);
+}
+
+/* Animations subtiles - Sharp transitions */
+@keyframes nothing-fade-in {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
+    transform: translateY(10px);
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
-body{
-  background-color: #282c34;
-  color: white;
+
+.nothing-fade-in {
+  animation: nothing-fade-in 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Animation typing gaming style améliorée */
+@keyframes blink-cursor {
+  0%, 45% {
+    opacity: 1;
+  }
+  46%, 100% {
+    opacity: 0;
+  }
+}
+
+@keyframes typing-glow {
+  0%, 100% {
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 0 25px rgba(255, 255, 255, 0.3);
+  }
+}
+
+.typing-animation {
+  position: relative;
+  display: inline-block;
+  animation: typing-glow 2s ease-in-out infinite;
+}
+
+.typing-animation::after {
+  content: '_';
+  position: absolute;
+  right: -4px;
+  color: rgba(255, 255, 255, 1);
+  font-weight: 400;
+  font-family: 'Nothing', monospace;
+  animation: blink-cursor 0.6s step-end infinite;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+/* Nothing OTF pour titre avec animation typing */
+.typing-title {
+  font-family: 'Nothing', 'MHTIROGLA', monospace;
+  font-weight: normal;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Force sharp corners for main UI elements */
+button, input, textarea, .nothing-card, .skill-card, .project-card, 
+.nothing-button, header, section, div[class*="card"], 
+div[class*="border"] {
+  border-radius: 0 !important;
+}
+
+/* Scrollbar minimaliste - Sharp */
+::-webkit-scrollbar {
+  width: 2px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--nothing-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--nothing-white);
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Image sharp rendering */
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* Cursor personnalisé - masquer le curseur par défaut sur desktop */
+@media (min-width: 768px) {
+  * {
+    cursor: none !important;
+  }
+  
+  a, button, input, textarea, select {
+    cursor: none !important;
+  }
+}
+
+/* Animations améliorées */
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.6s ease-out forwards;
+}
+
+.animate-fade-scale {
+  animation: fade-in-scale 0.6s ease-out forwards;
+}
+
+/* Effet de parallaxe subtil */
+.parallax-element {
+  transition: transform 0.3s ease-out;
+}
+
+/* Gradient text effect */
+.gradient-text {
+  background: linear-gradient(90deg, #ffffff 0%, rgba(255, 255, 255, 0.6) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Hover effects améliorés */
+.hover-lift {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Section transitions */
+section {
+  position: relative;
+  overflow: hidden;
 }

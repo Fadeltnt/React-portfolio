@@ -1,52 +1,51 @@
-import { VscVscodeInsiders } from "react-icons/vsc";
 import React from "react";
 import { projects } from "../data";
-
+import { useLanguage } from "../contexts/LanguageContext";
+import { translations } from "../translations";
+import { useScrollAnimation } from "../hooks/useScrollAnimation";
+import ProjectCard from "./ProjectCard";
 
 export default function Projects() {
+    const { language } = useLanguage();
+    const t = translations[language];
+    const [sectionRef, isSectionVisible] = useScrollAnimation({ threshold: 0.1, once: true });
+
+    // Convertir les GIF en images statiques (remplacer .gif par .png ou .jpg)
+    const getImagePath = (gifPath) => {
+        return gifPath.replace('.gif', '.png').replace('./', '/');
+    };
+
     return(
-        <section id = "projects" className = "text-gray-400 bg-gray-900 body-font">
-            <div className="container px-5 py-10 mx-auto text-center lg:px-40">
-                <div className="flex flex-col w-full mb-20">
-                    <VscVscodeInsiders className="mx-auto inline-block w-20 h-20 mb-4"/>
-                    <h1 className="sm:text-4xl text-3xl font-medium title-font mb-4 text-white">
-                        Projects
+        <section id="projects" className="nothing-section" ref={sectionRef}>
+            <div className="nothing-container">
+                <div 
+                    className="text-center mb-20 nothing-fade-in"
+                    style={{
+                        opacity: isSectionVisible ? 1 : 0,
+                        transform: isSectionVisible ? 'translateY(0)' : 'translateY(30px)',
+                        transition: 'all 0.8s ease-out'
+                    }}>
+                    <h1 className="nothing-title mb-6 text-white">
+                        {t.projects.title}
                     </h1>
-                    <p className="lg:w-2/3 mx-auto leading-relaxed text-base">
-                        I've had the opportunity to create a variety of applications that solve real-world problems. Each project has allowed me to expand my skills and work with different technologies. From building responsive web applications to developing complex backend systems, my experience showcases my versatility and commitment to quality.
-                        Take a look at my portfolio to see some of the apps I've built.
+                    <p className="nothing-subtitle lg:w-2/3 mx-auto leading-relaxed">
+                        {t.projects.description}
                     </p>
                 </div>
 
-                <div className="flex flex-wrap -m-4">
-                    {projects.map((project) => (
-                        <a
-                            href={project.link}
+                {/* Design Moodboard Architectural - Layout asymétrique */}
+                <div className="max-w-7xl mx-auto space-y-12 md:space-y-16">
+                    {projects.map((project, index) => (
+                        <ProjectCard
                             key={project.image}
-                            className="sm:w-1/2 w-100 p-4">
-                            <div className="flex relative">
-                                <img
-                                    alt="gallery"
-                                    className="absolute inset-0 w-full h-full object-cover object-center"
-                                    src={project.image}
-                                />
-                                <div
-                                    className="px-8 py-10 relative z-10 w-full border-4 border-gray-800 bg-gray-900 opacity-0 hover:opacity-100">
-                                    <h2 className="tracking-widest text-sm title-font font-medium text-green-400 mb-1">
-                                        {project.subtitle}
-                                    </h2>
-                                    <h1 className="title-font text-lg font-medium text-white mb-3">
-                                        {project.title}
-                                    </h1>
-                                    <p className="leading-relaxed">{project.description}</p>
-                                </div>
-                            </div>
-                        </a>
+                            project={project}
+                            index={index}
+                            totalProjects={projects.length}
+                            getImagePath={getImagePath}
+                        />
                     ))}
                 </div>
-
             </div>
-
         </section>
     )
 }

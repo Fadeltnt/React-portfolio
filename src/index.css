@@ -1,3 +1,118 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Override Tailwind pour Essential Apps Dark Mode */
+@layer base {
+  body {
+    @apply bg-black text-white;
+    font-family: 'Emilio Thin', sans-serif;
+    font-weight: 100;
+  }
+  
+  /* Nothing OTF pour navbar et grands titres uniquement */
+  header, h1, h2, .nothing-title {
+    font-family: 'Nothing', 'MHTIROGLA', monospace;
+  }
+}
+
+@layer utilities {
+  .nothing-section {
+    @apply bg-black border-t;
+    border-top-color: rgba(255, 255, 255, 0.12);
+  }
+  
+  .nothing-container {
+    @apply container mx-auto px-5 py-20;
+  }
+  
+  .nothing-title {
+    @apply text-4xl md:text-5xl font-normal tracking-wider;
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    font-family: 'Nothing', 'MHTIROGLA', monospace;
+  }
+  
+  .nothing-subtitle {
+    @apply text-lg md:text-xl text-white text-opacity-70;
+    letter-spacing: -0.01em;
+    font-family: 'Emilio Thin', sans-serif;
+    font-weight: 100;
+  }
+  
+  .nothing-button {
+    @apply inline-flex items-center px-8 py-3 border text-white bg-[#1C1C1E] transition-all duration-200;
+    border-color: rgba(255, 255, 255, 0.12);
+    font-family: 'Nothing', 'MHTIROGLA', monospace;
+    font-weight: normal;
+    letter-spacing: 0.05em;
+    border-radius: 0;
+  }
+  
+  .nothing-button:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    background-color: #2C2C2E;
+  }
+  
+  .nothing-button-accent {
+    @apply border text-black bg-white;
+    border-color: rgba(255, 255, 255, 0.3);
+    font-family: 'Emilio Thin', sans-serif;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    border-radius: 0;
+  }
+  
+  .nothing-button-accent:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+  
+  .nothing-card {
+    @apply bg-[#1C1C1E] border transition-all duration-200;
+    border-color: rgba(255, 255, 255, 0.08);
+    border-radius: 0;
+  }
+  
+  .nothing-card:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+    background-color: #2C2C2E;
+  }
+  
+  .skill-card {
+    @apply bg-[#1C1C1E] border transition-all duration-200 p-4 flex items-center justify-center;
+    border-color: rgba(255, 255, 255, 0.08);
+    border-radius: 0;
+  }
+  
+  .skill-card:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+    background-color: #2C2C2E;
+  }
+  
+  .project-card {
+    @apply bg-black border transition-all duration-200;
+    border-color: rgba(255, 255, 255, 0.12);
+    border-radius: 0;
+    overflow: hidden;
+  }
+  
+  .project-card:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .nothing-input {
+    @apply w-full bg-black border text-white px-4 py-3 focus:outline-none transition-all duration-200;
+    border-color: rgba(255, 255, 255, 0.12);
+    border-radius: 0;
+  }
+  
+  .nothing-input:focus {
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .nothing-input::placeholder {
+    @apply text-white;
+    opacity: 0.3;
+  }
+}

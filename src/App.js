@@ -5,17 +5,25 @@ import Contact from "./components/Contact";
 import Navbar from "./components/Navbar";
 import Projects from "./components/Projects";
 import Skills from "./components/Skills";
+import Stats from "./components/Stats";
+import CustomCursor from "./components/CustomCursor";
 import "./App.css"
 import Education from "./components/Education";
+import { LanguageProvider } from "./contexts/LanguageContext";
+
 export default function App() {
     return (
-        <main className={"text-gray-400 bg-stone-950 body-font"} style={{fontFamily: 'MHTIROGLA'}}>
-            <Navbar />
-            <About />
-            <Projects />
-            <Skills />
-            <Education />
-            <Contact />
-        </main>
+        <LanguageProvider>
+            <main className="bg-black text-white">
+                <CustomCursor />
+                <Navbar />
+                <About />
+                <Stats />
+                <Projects />
+                <Skills />
+                <Education />
+                <Contact />
+            </main>
+        </LanguageProvider>
     );
 }
