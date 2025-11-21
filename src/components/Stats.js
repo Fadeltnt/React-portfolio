@@ -2,20 +2,17 @@ import React from 'react';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 import { useCounter } from '../hooks/useCounter';
 import { useLanguage } from "../contexts/LanguageContext";
-import { translations } from "../translations";
 
 export default function Stats() {
     const { language } = useLanguage();
-    const t = translations[language];
     const [ref, isVisible] = useScrollAnimation({ threshold: 0.3, once: true });
-    
+
     const [projectsCount, startProjects] = useCounter(3, 1500, 0, false);
     const [skillsCount, startSkills] = useCounter(8, 1500, 0, false);
     const [yearsCount, startYears] = useCounter(3, 1500, 0, false);
 
     React.useEffect(() => {
         if (isVisible) {
-            // Petit délai pour un effet plus fluide
             const timer = setTimeout(() => {
                 startProjects();
                 startSkills();
@@ -47,35 +44,24 @@ export default function Stats() {
     ];
 
     return (
-        <section className="nothing-section py-16 sm:py-20">
+        <section className="nothing-section py-24 border-b border-white/10">
             <div className="nothing-container">
-                <div 
+                <div
                     ref={ref}
-                    className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 max-w-5xl mx-auto">
+                    className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-0 max-w-6xl mx-auto divide-y md:divide-y-0 md:divide-x divide-white/10">
                     {stats.map((stat, index) => (
                         <div
                             key={index}
-                            className="text-center nothing-fade-in"
+                            className="text-center py-8 md:py-0 px-4"
                             style={{
                                 opacity: isVisible ? 1 : 0,
                                 transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
                                 transition: `all 0.6s ease-out ${stat.delay}`
                             }}>
-                            <div 
-                                className="mb-4 text-5xl sm:text-6xl md:text-7xl text-white"
-                                style={{
-                                    fontFamily: "'Nothing', monospace",
-                                    letterSpacing: '0.05em',
-                                    lineHeight: '1'
-                                }}>
-                                {stat.number}{stat.suffix}
+                            <div className="mb-2 text-6xl md:text-8xl text-white font-medium font-display tracking-widest">
+                                {stat.number}<span className="text-[#D71921] text-4xl md:text-6xl align-top">{stat.suffix}</span>
                             </div>
-                            <div 
-                                className="text-sm sm:text-base text-white opacity-60 uppercase tracking-widest"
-                                style={{
-                                    fontFamily: "'Nothing', monospace",
-                                    letterSpacing: '0.15em'
-                                }}>
+                            <div className="text-xs md:text-sm text-zinc-500 uppercase tracking-[0.2em] font-mono">
                                 {stat.label}
                             </div>
                         </div>
@@ -85,4 +71,3 @@ export default function Stats() {
         </section>
     );
 }
-

@@ -7,11 +7,10 @@ export default function CustomCursor() {
     const [isDesktop, setIsDesktop] = useState(false);
 
     useEffect(() => {
-        // Vérifier si on est sur desktop
         const checkDesktop = () => {
             setIsDesktop(window.innerWidth >= 768);
         };
-        
+
         checkDesktop();
         window.addEventListener('resize', checkDesktop);
 
@@ -25,9 +24,9 @@ export default function CustomCursor() {
         const handleMouseEnter = (e) => {
             if (window.innerWidth >= 768 && e.target) {
                 const target = e.target;
-                const isInteractive = target.tagName === 'A' || 
-                                    target.tagName === 'BUTTON' || 
-                                    (target.closest && (target.closest('a') || target.closest('button')));
+                const isInteractive = target.tagName === 'A' ||
+                    target.tagName === 'BUTTON' ||
+                    (target.closest && (target.closest('a') || target.closest('button')));
                 if (isInteractive) {
                     setIsHovering(true);
                 }
@@ -37,9 +36,9 @@ export default function CustomCursor() {
         const handleMouseLeave = (e) => {
             if (window.innerWidth >= 768 && e.target) {
                 const target = e.target;
-                const isInteractive = target.tagName === 'A' || 
-                                    target.tagName === 'BUTTON' || 
-                                    (target.closest && (target.closest('a') || target.closest('button')));
+                const isInteractive = target.tagName === 'A' ||
+                    target.tagName === 'BUTTON' ||
+                    (target.closest && (target.closest('a') || target.closest('button')));
                 if (isInteractive) {
                     setIsHovering(false);
                 }
@@ -82,16 +81,15 @@ export default function CustomCursor() {
         };
     }, []);
 
-    // Masquer sur mobile
     if (!isDesktop) {
         return null;
     }
 
     return (
         <>
-            {/* Cursor principal */}
+            {/* Main Cursor (Red Dot) */}
             <div
-                className="fixed pointer-events-none z-[9999] mix-blend-difference"
+                className="fixed pointer-events-none z-[9999]"
                 style={{
                     left: `${position.x}px`,
                     top: `${position.y}px`,
@@ -101,15 +99,14 @@ export default function CustomCursor() {
                     willChange: 'transform'
                 }}>
                 <div
-                    className="w-6 h-6 rounded-full bg-white transition-all duration-300"
+                    className="w-2 h-2 rounded-full bg-[#D71921] transition-all duration-300 shadow-[0_0_10px_rgba(215,25,33,0.8)]"
                     style={{
-                        transform: isHovering ? 'scale(2)' : 'scale(1)',
-                        opacity: isHovering ? 0.3 : 0.8
+                        transform: isHovering ? 'scale(1.5)' : 'scale(1)',
                     }}
                 />
             </div>
-            
-            {/* Cursor follower */}
+
+            {/* Cursor Follower (Crosshair) */}
             <div
                 className="fixed pointer-events-none z-[9998]"
                 style={{
@@ -121,13 +118,14 @@ export default function CustomCursor() {
                     willChange: 'transform'
                 }}>
                 <div
-                    className="w-2 h-2 rounded-full bg-white transition-all duration-500 ease-out"
+                    className="relative w-8 h-8 transition-all duration-500 ease-out"
                     style={{
-                        transform: isHovering ? 'scale(0.5)' : 'scale(1)'
-                    }}
-                />
+                        transform: isHovering ? 'scale(1.5) rotate(45deg)' : 'scale(1) rotate(0deg)'
+                    }}>
+                    <div className="absolute top-1/2 left-0 w-full h-[1px] bg-white/30"></div>
+                    <div className="absolute left-1/2 top-0 h-full w-[1px] bg-white/30"></div>
+                </div>
             </div>
         </>
     );
 }
-

@@ -15,26 +15,24 @@ export default function Skills() {
     return (
         <section id="skills" className="nothing-section" ref={sectionRef}>
             <div className="nothing-container">
-                <div 
-                    className="text-center mb-16 nothing-fade-in"
+                <div
+                    className="text-center mb-24"
                     style={{
                         opacity: isSectionVisible ? 1 : 0,
                         transform: isSectionVisible ? 'translateY(0)' : 'translateY(30px)',
                         transition: 'all 0.8s ease-out'
                     }}>
-                    <h1 className="nothing-title mb-4 text-white">
-                        {t.skills.title}
+                    <h1 className="font-display text-4xl md:text-6xl text-white mb-6 tracking-wider">
+                        {t.skills.title}<span className="text-[#D71921]">.</span>
                     </h1>
                 </div>
-                
-                {/* Design Nothing Essential Apps - Grille moderne */}
+
                 <div className="max-w-6xl mx-auto">
-                    {/* Mobile: Grille 2 colonnes compacte */}
-                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
                         {skills.map((skill, index) => (
-                            <SkillCard 
-                                key={skill} 
-                                skill={skill} 
+                            <SkillCard
+                                key={skill}
+                                skill={skill}
                                 index={index}
                             />
                         ))}

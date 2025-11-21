@@ -1,4 +1,5 @@
-/* Définition de la police personnalisée */
+/* Nothing OS Design System */
+
 @font-face {
   font-family: 'MHTIROGLA';
   src: url('./Assets/fonts/MHTIROGLA.ttf') format('truetype');
@@ -6,15 +7,6 @@
   font-style: normal;
 }
 
-/* Police Nothing OTF pour navbar et titres */
-@font-face {
-  font-family: 'Nothing';
-  src: url('./Assets/fonts/NOTHING.otf.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-/* Police Emilio Thin pour texte lisible */
 @font-face {
   font-family: 'Emilio Thin';
   src: url('./Assets/fonts/Emilio-Thin-.otf') format('opentype');
@@ -22,218 +14,41 @@
   font-style: normal;
 }
 
-/* Esthétique Essential Apps Dark Mode - Variables de couleurs */
 :root {
-  --nothing-black: #0a0a0a; /* Noir légèrement moins profond pour le contraste */
-  --nothing-white: #EAEAEA; /* Blanc légèrement cassé */
-  --nothing-gray: #1C1C1E;
-  --nothing-gray-light: #2C2C2E;
-  --nothing-gray-lighter: #3C3C3E;
-  --nothing-card-bg: #141414;
-  --nothing-card-hover: #1A1A1A;
-  --nothing-accent: rgba(255, 255, 255, 0.8);
-  --nothing-border: rgba(255, 255, 255, 0.08);
-  --nothing-border-strong: rgba(255, 255, 255, 0.2);
-  --nothing-glow: rgba(255, 255, 255, 0.05);
+  --nothing-red: #D71921;
+  --nothing-black: #000000;
+  --nothing-white: #FFFFFF;
 }
 
-/* Reset et base */
+/* Reset */
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background-color: #050505;
+  background-color: var(--nothing-black);
   color: var(--nothing-white);
   font-family: 'Emilio Thin', sans-serif;
   font-weight: 100;
-  letter-spacing: -0.01em;
-  line-height: 1.6;
   overflow-x: hidden;
-  /* Grille subtile en background global */
-  background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 60px 60px;
-  background-position: center top;
 }
 
-/* Police Nothing OTF pour navbar et grands titres */
-header, 
-.nothing-title,
-h1, h2, .tech-font {
-  font-family: 'Nothing', 'MHTIROGLA', monospace;
-  letter-spacing: 0.05em;
-}
-
-/* Police lisible pour le reste - Emilio Thin */
-p, span, div, a, label, li {
-  font-family: 'Emilio Thin', sans-serif;
-  font-weight: 100;
-  letter-spacing: -0.01em;
-}
-
-/* Boutons et inputs gardent un poids plus fort pour la lisibilité */
-button, input, textarea {
-  font-family: 'Emilio Thin', sans-serif;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-}
-
-/* Éléments techniques Nothing OS */
-.nothing-corner-bracket {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  border-color: rgba(255, 255, 255, 0.6);
-  border-style: solid;
-  transition: all 0.3s ease;
-  z-index: 10;
-}
-
-.bracket-tl { border-width: 1px 0 0 1px; top: -1px; left: -1px; }
-.bracket-tr { border-width: 1px 1px 0 0; top: -1px; right: -1px; }
-.bracket-bl { border-width: 0 0 1px 1px; bottom: -1px; left: -1px; }
-.bracket-br { border-width: 0 1px 1px 0; bottom: -1px; right: -1px; }
-
-.tech-cross {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  pointer-events: none;
-}
-
-.tech-cross::before, .tech-cross::after {
-  content: '';
-  position: absolute;
-  background: rgba(255, 255, 255, 0.2);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.tech-cross::before { width: 100%; height: 1px; }
-.tech-cross::after { width: 1px; height: 100%; }
-
-/* Flat Design 2D - Sharp et précis */
-.nothing-glow {
-  box-shadow: none;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.nothing-glow:hover {
-  box-shadow: none;
-}
-
-/* Bordures nettes et précises - Flat Design */
-.nothing-border {
-  border: 1px solid var(--nothing-border);
-  border-radius: 0;
-}
-
-.nothing-border-thick {
-  border: 1px solid var(--nothing-border-strong);
-  border-radius: 0;
-}
-
-/* Sharp corners - Apple-like */
-.sharp {
-  border-radius: 0;
-}
-
-/* Flat card design */
-.flat-card {
-  background: var(--nothing-black);
-  border: 1px solid var(--nothing-border);
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.flat-card:hover {
-  border-color: var(--nothing-border-strong);
-  background: var(--nothing-gray);
-}
-
-/* Texte avec effet de glow */
-.text-glow {
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-}
-
-.text-glow-accent {
-  text-shadow: 0 0 15px var(--nothing-accent);
-}
-
-/* Animations subtiles - Sharp transitions */
-@keyframes nothing-fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+/* Custom Cursor */
+@media (min-width: 768px) {
+  * {
+    cursor: none !important;
   }
 }
 
-.nothing-fade-in {
-  animation: nothing-fade-in 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Animation typing gaming style améliorée */
-@keyframes blink-cursor {
-  0%, 45% {
-    opacity: 1;
-  }
-  46%, 100% {
-    opacity: 0;
-  }
-}
-
-@keyframes typing-glow {
-  0%, 100% {
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
-  }
-  50% {
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.6), 0 0 25px rgba(255, 255, 255, 0.3);
-  }
-}
-
-.typing-animation {
-  position: relative;
-  display: inline-block;
-  animation: typing-glow 2s ease-in-out infinite;
-}
-
-.typing-animation::after {
-  content: '_';
-  position: absolute;
-  right: -4px;
-  color: rgba(255, 255, 255, 1);
-  font-weight: 400;
-  font-family: 'Nothing', monospace;
-  animation: blink-cursor 0.6s step-end infinite;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-}
-
-/* Nothing OTF pour titre avec animation typing */
-.typing-title {
-  font-family: 'Nothing', 'MHTIROGLA', monospace;
-  font-weight: normal;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-/* Force sharp corners for main UI elements */
-button, input, textarea, .nothing-card, .skill-card, .project-card, 
-.nothing-button, header, section, div[class*="card"], 
-div[class*="border"] {
-  border-radius: 0 !important;
-}
-
-/* Scrollbar minimaliste - Sharp */
+/* Scrollbar */
 ::-webkit-scrollbar {
-  width: 2px;
+  width: 4px;
 }
 
 ::-webkit-scrollbar-track {
@@ -241,91 +56,58 @@ div[class*="border"] {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--nothing-white);
-  border-radius: 0;
+  background: #333;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.5);
+  background: #555;
 }
 
-/* Image sharp rendering */
-img {
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
+/* Utilities */
+.nothing-font {
+  font-family: 'Space Grotesk', monospace;
 }
 
-/* Cursor personnalisé - masquer le curseur par défaut sur desktop */
-@media (min-width: 768px) {
-  * {
-    cursor: none !important;
-  }
-  
-  a, button, input, textarea, select {
-    cursor: none !important;
-  }
+.display-font {
+  font-family: 'MHTIROGLA', sans-serif;
 }
 
-/* Animations améliorées */
-@keyframes slide-up {
+.emilio-font {
+  font-family: 'Emilio Thin', sans-serif;
+  font-weight: 100;
+}
+
+.inter-font {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Animations */
+@keyframes spin-slow {
   from {
-    opacity: 0;
-    transform: translateY(40px);
+    transform: rotate(0deg);
   }
+
   to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 12s linear infinite;
+}
+
+@keyframes pulse-slow {
+
+  0%,
+  100% {
     opacity: 1;
-    transform: translateY(0);
+  }
+
+  50% {
+    opacity: 0.5;
   }
 }
 
-@keyframes fade-in-scale {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.animate-slide-up {
-  animation: slide-up 0.6s ease-out forwards;
-}
-
-.animate-fade-scale {
-  animation: fade-in-scale 0.6s ease-out forwards;
-}
-
-/* Effet de parallaxe subtil */
-.parallax-element {
-  transition: transform 0.3s ease-out;
-}
-
-/* Gradient text effect */
-.gradient-text {
-  background: linear-gradient(90deg, #ffffff 0%, rgba(255, 255, 255, 0.6) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Hover effects améliorés */
-.hover-lift {
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.hover-lift:hover {
-  transform: translateY(-4px);
-}
-
-/* Smooth scroll */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Section transitions */
-section {
-  position: relative;
-  overflow: hidden;
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
 }

@@ -1,118 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@100;200;300;400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Override Tailwind pour Essential Apps Dark Mode */
 @layer base {
   body {
     @apply bg-black text-white;
-    font-family: 'Emilio Thin', sans-serif;
-    font-weight: 100;
+    font-family: 'Inter', sans-serif;
+    background-color: #000000;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+    background-size: 30px 30px;
+    overflow-x: hidden;
   }
-  
-  /* Nothing OTF pour navbar et grands titres uniquement */
-  header, h1, h2, .nothing-title {
-    font-family: 'Nothing', 'MHTIROGLA', monospace;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .nothing-font {
+    font-family: 'Space Grotesk', monospace;
   }
 }
 
 @layer utilities {
   .nothing-section {
-    @apply bg-black border-t;
-    border-top-color: rgba(255, 255, 255, 0.12);
+    @apply relative border-t border-white/10;
   }
-  
+
   .nothing-container {
-    @apply container mx-auto px-5 py-20;
+    @apply container mx-auto px-6 py-24 relative z-10;
   }
-  
+
   .nothing-title {
-    @apply text-4xl md:text-5xl font-normal tracking-wider;
-    letter-spacing: 0.05em;
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-    font-family: 'Nothing', 'MHTIROGLA', monospace;
+    @apply text-5xl md:text-7xl font-medium tracking-tight mb-4;
+    font-family: 'Space Grotesk', sans-serif;
   }
-  
+
   .nothing-subtitle {
-    @apply text-lg md:text-xl text-white text-opacity-70;
-    letter-spacing: -0.01em;
-    font-family: 'Emilio Thin', sans-serif;
-    font-weight: 100;
+    @apply text-lg md:text-xl text-zinc-400 font-light tracking-wide;
+    font-family: 'Inter', sans-serif;
   }
-  
+
+  /* Buttons */
   .nothing-button {
-    @apply inline-flex items-center px-8 py-3 border text-white bg-[#1C1C1E] transition-all duration-200;
-    border-color: rgba(255, 255, 255, 0.12);
-    font-family: 'Nothing', 'MHTIROGLA', monospace;
-    font-weight: normal;
-    letter-spacing: 0.05em;
-    border-radius: 0;
-  }
-  
-  .nothing-button:hover {
-    border-color: rgba(255, 255, 255, 0.2);
-    background-color: #2C2C2E;
-  }
-  
-  .nothing-button-accent {
-    @apply border text-black bg-white;
-    border-color: rgba(255, 255, 255, 0.3);
-    font-family: 'Emilio Thin', sans-serif;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    border-radius: 0;
-  }
-  
-  .nothing-button-accent:hover {
-    background-color: rgba(255, 255, 255, 0.9);
-    border-color: rgba(255, 255, 255, 0.4);
-  }
-  
-  .nothing-card {
-    @apply bg-[#1C1C1E] border transition-all duration-200;
-    border-color: rgba(255, 255, 255, 0.08);
-    border-radius: 0;
-  }
-  
-  .nothing-card:hover {
-    border-color: rgba(255, 255, 255, 0.15);
-    background-color: #2C2C2E;
-  }
-  
-  .skill-card {
-    @apply bg-[#1C1C1E] border transition-all duration-200 p-4 flex items-center justify-center;
-    border-color: rgba(255, 255, 255, 0.08);
-    border-radius: 0;
-  }
-  
-  .skill-card:hover {
-    border-color: rgba(255, 255, 255, 0.15);
-    background-color: #2C2C2E;
-  }
-  
-  .project-card {
-    @apply bg-black border transition-all duration-200;
-    border-color: rgba(255, 255, 255, 0.12);
-    border-radius: 0;
+    @apply inline-flex items-center justify-center px-8 py-3 text-sm uppercase tracking-widest transition-all duration-300;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    font-family: 'Space Grotesk', monospace;
+    position: relative;
     overflow: hidden;
   }
-  
-  .project-card:hover {
-    border-color: rgba(255, 255, 255, 0.2);
+
+  .nothing-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+    z-index: -1;
   }
-  
+
+  .nothing-button:hover {
+    color: black;
+    border-color: white;
+  }
+
+  .nothing-button:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  .nothing-button-accent {
+    @apply bg-[#D71921] border-[#D71921] text-white;
+  }
+
+  .nothing-button-accent:hover {
+    @apply bg-red-700 border-red-700 text-white;
+  }
+
+  .nothing-button-accent::before {
+    background: #b91c1c;
+  }
+
+  /* Cards */
+  .nothing-card {
+    @apply bg-black/50 backdrop-blur-sm border border-white/10 p-6 transition-all duration-300;
+  }
+
+  .nothing-card:hover {
+    @apply border-white/30 bg-black/80;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+  }
+
+  /* Inputs */
   .nothing-input {
-    @apply w-full bg-black border text-white px-4 py-3 focus:outline-none transition-all duration-200;
-    border-color: rgba(255, 255, 255, 0.12);
-    border-radius: 0;
+    @apply w-full bg-transparent border border-white/20 text-white px-4 py-3 focus:outline-none focus:border-white/50 transition-all duration-300;
+    font-family: 'Space Grotesk', monospace;
   }
-  
-  .nothing-input:focus {
-    border-color: rgba(255, 255, 255, 0.2);
-  }
-  
+
   .nothing-input::placeholder {
-    @apply text-white;
-    opacity: 0.3;
+    @apply text-zinc-600;
+  }
+
+  /* Accents */
+  .nothing-red-dot {
+    @apply w-2 h-2 bg-[#D71921] rounded-full inline-block ml-1;
+    box-shadow: 0 0 10px rgba(215, 25, 33, 0.5);
+  }
+
+  .nothing-border-glow {
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.05);
   }
 }

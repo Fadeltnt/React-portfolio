@@ -30,81 +30,47 @@ export default function Contact() {
 
     return (
         <section id="contact" className="nothing-section">
-            <div className="nothing-container flex flex-col lg:flex-row gap-6 sm:gap-8">
-                {/* Informations de contact - Mobile: pleine largeur, Desktop: 1/3 */}
+            <div className="nothing-container flex flex-col lg:flex-row gap-12">
+                {/* Contact Info */}
                 <div className="w-full lg:w-1/3 flex flex-col">
-                    <h2 
-                        className="nothing-title mb-2 text-white text-2xl sm:text-3xl md:text-4xl mb-6"
-                        style={{
-                            fontFamily: "'Nothing', monospace"
-                        }}>
-                        {t.contact.title}
+                    <h2 className="font-display text-4xl md:text-6xl text-white mb-8 tracking-wider">
+                        {t.contact.title}<span className="text-[#D71921]">.</span>
                     </h2>
-                    <p 
-                        className="nothing-subtitle mb-8 text-sm sm:text-base">
+                    <p className="font-body text-lg mb-12 opacity-80 leading-relaxed">
                         {t.contact.description}
                     </p>
-                    
-                    <div className="space-y-6">
-                        <div>
-                            <h3 
-                                className="font-medium text-white tracking-widest text-[10px] sm:text-xs mb-2"
-                                style={{
-                                    fontFamily: "'Nothing', monospace",
-                                    letterSpacing: '0.1em'
-                                }}>
+
+                    <div className="space-y-8">
+                        <div className="group">
+                            <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-500 mb-2 group-hover:text-[#D71921] transition-colors">
                                 {t.contact.email}
                             </h3>
-                            <a 
-                                href="mailto:fadeltinto@gmail.com" 
-                                className="text-white text-opacity-80 hover:text-white hover:text-opacity-100 transition-colors duration-200 text-xs sm:text-sm block"
-                                style={{
-                                    fontFamily: "'Emilio Thin', sans-serif",
-                                    fontWeight: 100
-                                }}>
+                            <a
+                                href="mailto:fadeltinto@gmail.com"
+                                className="font-body text-xl text-white hover:text-zinc-300 transition-colors">
                                 fadeltinto@gmail.com
                             </a>
                         </div>
-                        <div>
-                            <h3 
-                                className="font-medium text-white tracking-widest text-[10px] sm:text-xs mb-2"
-                                style={{
-                                    fontFamily: "'Nothing', monospace",
-                                    letterSpacing: '0.1em'
-                                }}>
+                        <div className="group">
+                            <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-500 mb-2 group-hover:text-[#D71921] transition-colors">
                                 {t.contact.phone}
                             </h3>
-                            <p 
-                                className="text-white text-opacity-70 text-xs sm:text-sm"
-                                style={{
-                                    fontFamily: "'Emilio Thin', sans-serif",
-                                    fontWeight: 100
-                                }}>
+                            <p className="font-body text-xl text-white">
                                 438-778-4099
                             </p>
                         </div>
-                        <div>
-                            <h3 
-                                className="font-medium text-white tracking-widest text-[10px] sm:text-xs mb-2"
-                                style={{
-                                    fontFamily: "'Nothing', monospace",
-                                    letterSpacing: '0.1em'
-                                }}>
+                        <div className="group">
+                            <h3 className="text-xs font-mono uppercase tracking-widest text-zinc-500 mb-2 group-hover:text-[#D71921] transition-colors">
                                 {t.contact.address}
                             </h3>
-                            <p 
-                                className="text-white text-opacity-70 text-xs sm:text-sm"
-                                style={{
-                                    fontFamily: "'Emilio Thin', sans-serif",
-                                    fontWeight: 100
-                                }}>
+                            <p className="font-body text-xl text-white">
                                 Québec
                             </p>
                         </div>
                     </div>
                 </div>
-                
-                {/* Formulaire - Mobile: pleine largeur, Desktop: 2/3 */}
+
+                {/* Form */}
                 <form
                     name="contact"
                     method="POST"
@@ -112,20 +78,15 @@ export default function Contact() {
                     data-netlify="true"
                     netlify-honeypot="bot-field"
                     onSubmit={handleSubmit}
-                    className="w-full lg:w-2/3 flex flex-col">
-                    {/* Champs cachés nécessaires pour Netlify */}
+                    className="w-full lg:w-2/3 flex flex-col gap-6 bg-black/20 p-8 border border-white/10 backdrop-blur-sm">
+
                     <div hidden>
-                        <input type="hidden" name="form-name" value="contact"/>
-                        <input type="hidden" name="bot-field"/>
+                        <input type="hidden" name="form-name" value="contact" />
+                        <input type="hidden" name="bot-field" />
                     </div>
-                    <div className="relative mb-4 sm:mb-6">
-                        <label 
-                            htmlFor="name" 
-                            className="block text-xs sm:text-sm text-white text-opacity-70 mb-2 tracking-wider"
-                            style={{
-                                fontFamily: "'Nothing', monospace",
-                                letterSpacing: '0.05em'
-                            }}>
+
+                    <div>
+                        <label htmlFor="name" className="block text-xs font-mono uppercase tracking-widest text-zinc-500 mb-2">
                             {t.contact.name}
                         </label>
                         <input
@@ -134,18 +95,13 @@ export default function Contact() {
                             name="name"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
-                            className="nothing-input text-sm sm:text-base"
+                            className="nothing-input font-body"
                             placeholder={t.contact.namePlaceholder || "Your name"}
                         />
                     </div>
-                    <div className="relative mb-4 sm:mb-6">
-                        <label 
-                            htmlFor="email" 
-                            className="block text-xs sm:text-sm text-white text-opacity-70 mb-2 tracking-wider"
-                            style={{
-                                fontFamily: "'Nothing', monospace",
-                                letterSpacing: '0.05em'
-                            }}>
+
+                    <div>
+                        <label htmlFor="email" className="block text-xs font-mono uppercase tracking-widest text-zinc-500 mb-2">
                             {t.contact.email}
                         </label>
                         <input
@@ -154,18 +110,13 @@ export default function Contact() {
                             name="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="nothing-input text-sm sm:text-base"
+                            className="nothing-input font-body"
                             placeholder={t.contact.emailPlaceholder || "your.email@example.com"}
                         />
                     </div>
-                    <div className="relative mb-4 sm:mb-6">
-                        <label 
-                            htmlFor="message" 
-                            className="block text-xs sm:text-sm text-white text-opacity-70 mb-2 tracking-wider"
-                            style={{
-                                fontFamily: "'Nothing', monospace",
-                                letterSpacing: '0.05em'
-                            }}>
+
+                    <div>
+                        <label htmlFor="message" className="block text-xs font-mono uppercase tracking-widest text-zinc-500 mb-2">
                             {t.contact.message}
                         </label>
                         <textarea
@@ -173,13 +124,14 @@ export default function Contact() {
                             name="message"
                             value={message}
                             onChange={(e) => setMessage(e.target.value)}
-                            className="nothing-input h-24 sm:h-32 resize-none text-sm sm:text-base"
+                            className="nothing-input h-32 resize-none font-body"
                             placeholder={t.contact.messagePlaceholder || "Your message..."}
                         />
                     </div>
+
                     <button
                         type="submit"
-                        className="nothing-button nothing-button-accent w-full text-sm sm:text-base">
+                        className="nothing-button nothing-button-accent w-full mt-4 font-mono">
                         {t.contact.submit}
                     </button>
                 </form>
