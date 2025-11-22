@@ -96,9 +96,6 @@ const PhotographyPortfolio = () => {
                     <a href="#work" className="hover:line-through decoration-1">Work</a>
                     <a href="#about" className="hover:line-through decoration-1">About</a>
                     <a href="#contact" className="hover:line-through decoration-1">Contact</a>
-                    <Link to="/software" className="text-zinc-400 hover:text-black transition-colors">
-                        Software
-                    </Link>
                 </div>
             </nav>
 
