@@ -81,6 +81,17 @@ export default function CustomCursor() {
         };
     }, []);
 
+    React.useLayoutEffect(() => {
+        if (isDesktop) {
+            document.body.classList.add('custom-cursor-active');
+        } else {
+            document.body.classList.remove('custom-cursor-active');
+        }
+        return () => {
+            document.body.classList.remove('custom-cursor-active');
+        };
+    }, [isDesktop]);
+
     if (!isDesktop) {
         return null;
     }

@@ -1,6 +1,6 @@
 // src/components/Navbar.js
 
-import { ArrowRightIcon, MenuIcon, XIcon } from "@heroicons/react/solid";
+import { Bars3Icon as MenuIcon, XMarkIcon as XIcon } from "@heroicons/react/24/solid";
 import React, { useState } from "react";
 import { useLanguage } from "../contexts/LanguageContext";
 import { translations } from "../translations";

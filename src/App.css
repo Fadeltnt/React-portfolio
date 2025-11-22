@@ -41,7 +41,9 @@ body {
 
 /* Custom Cursor */
 @media (min-width: 768px) {
-  * {
+
+  body.custom-cursor-active,
+  body.custom-cursor-active * {
     cursor: none !important;
   }
 }
@@ -110,4 +112,9 @@ body {
 
 .animate-pulse-slow {
   animation: pulse-slow 4s ease-in-out infinite;
+}
+
+.text-outline-transparent {
+  color: transparent;
+  -webkit-text-stroke: 1px black;
 }
