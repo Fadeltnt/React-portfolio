@@ -51,6 +51,10 @@ const PhotographyPortfolio = () => {
     const [message, setMessage] = React.useState("");
     const [activeProject, setActiveProject] = React.useState(null);
     const [activeIndex, setActiveIndex] = React.useState(0);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+
+    const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
+    const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
     const openImage = (project, index) => {
         setActiveProject(project);
@@ -151,20 +155,87 @@ const PhotographyPortfolio = () => {
     return (
         <div className="min-h-screen bg-white dark:bg-black text-black dark:text-white font-['Emilio_Thin'] selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black transition-colors duration-500">
             {/* Navigation */}
-            <nav className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 py-6 bg-white/90 dark:bg-black/90 backdrop-blur-sm transition-colors duration-500">
-                <Link to="/" className="text-xl font-bold tracking-tighter hover:opacity-50 transition-opacity">
-                    FADEL TINTO
-                </Link>
-                <div className="flex items-center gap-6 text-sm font-medium tracking-widest uppercase">
+            {/* Navigation */}
+            <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-6 bg-white/90 dark:bg-black/90 backdrop-blur-sm transition-colors duration-500">
+                <div className="flex justify-between items-center">
+                    <Link to="/" className="text-xl font-bold tracking-tighter hover:opacity-50 transition-opacity z-50 relative" onClick={closeMobileMenu}>
+                        FADEL TINTO
+                    </Link>
+
+                    {/* Desktop Menu */}
+                    <div className="hidden md:flex items-center gap-6 text-sm font-medium tracking-widest uppercase">
+                        <button
+                            onClick={toggleTheme}
+                            className="hover:opacity-50 transition-opacity"
+                        >
+                            {theme === 'dark' ? 'Light' : 'Dark'}
+                        </button>
+                        <a href="#work" className="hover:line-through decoration-1">Work</a>
+                        <a href="#about" className="hover:line-through decoration-1">About</a>
+                        <a href="#contact" className="hover:line-through decoration-1">Contact</a>
+                    </div>
+
+                    {/* Mobile Menu Button */}
                     <button
-                        onClick={toggleTheme}
-                        className="hover:opacity-50 transition-opacity"
+                        className="md:hidden z-50 relative group w-12 h-12 flex items-center justify-center -mr-2"
+                        onClick={toggleMobileMenu}
                     >
-                        {theme === 'dark' ? 'Light' : 'Dark'}
+                        <div className="w-8 flex flex-col items-center gap-1.5">
+                            <span className={`w-full h-[1px] bg-current transition-all duration-300 ease-out origin-center ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
+                            <span className={`w-full h-[1px] bg-current transition-all duration-300 ease-out ${isMobileMenuOpen ? 'opacity-0 scale-x-0' : ''}`}></span>
+                            <span className={`w-full h-[1px] bg-current transition-all duration-300 ease-out origin-center ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+                        </div>
                     </button>
-                    <a href="#work" className="hover:line-through decoration-1">Work</a>
-                    <a href="#about" className="hover:line-through decoration-1">About</a>
-                    <a href="#contact" className="hover:line-through decoration-1">Contact</a>
+                </div>
+
+                {/* Mobile Menu Overlay */}
+                <div className={`fixed inset-0 top-0 left-0 w-full h-screen bg-[#ffffff] dark:bg-[#000000] transition-all duration-300 z-40 flex flex-col ${isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+                    {/* Menu Content */}
+                    <div className="flex-1 flex flex-col justify-center items-center gap-8 p-6">
+                        <a
+                            href="#work"
+                            onClick={closeMobileMenu}
+                            className={`text-5xl font-['Emilio_Thin'] uppercase tracking-tight transition-all duration-500 hover:opacity-50 ${isMobileMenuOpen ? 'translate-y-0 opacity-100 delay-100' : 'translate-y-10 opacity-0'}`}
+                        >
+                            Work
+                        </a>
+                        <a
+                            href="#about"
+                            onClick={closeMobileMenu}
+                            className={`text-5xl font-['Emilio_Thin'] uppercase tracking-tight transition-all duration-500 hover:opacity-50 ${isMobileMenuOpen ? 'translate-y-0 opacity-100 delay-200' : 'translate-y-10 opacity-0'}`}
+                        >
+                            About
+                        </a>
+                        <a
+                            href="#contact"
+                            onClick={closeMobileMenu}
+                            className={`text-5xl font-['Emilio_Thin'] uppercase tracking-tight transition-all duration-500 hover:opacity-50 ${isMobileMenuOpen ? 'translate-y-0 opacity-100 delay-300' : 'translate-y-10 opacity-0'}`}
+                        >
+                            Contact
+                        </a>
+                    </div>
+
+                    {/* Menu Footer */}
+                    <div className={`p-8 border-t border-black/10 dark:border-white/10 flex flex-col items-center gap-6 transition-all duration-500 ${isMobileMenuOpen ? 'translate-y-0 opacity-100 delay-500' : 'translate-y-10 opacity-0'}`}>
+                        <button
+                            onClick={() => { toggleTheme(); }}
+                            className="text-sm font-bold uppercase tracking-widest hover:opacity-50 transition-opacity"
+                        >
+                            {theme === 'dark' ? 'Switch to Light' : 'Switch to Dark'}
+                        </button>
+
+                        <div className="flex items-center gap-6 text-xs uppercase tracking-widest text-zinc-500 font-medium">
+                            <a
+                                href="https://www.instagram.com/bizzareshots/?igsh=Z3B6dWNmcTg0NzZj&utm_source=qr"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hover:text-black dark:hover:text-white transition-colors"
+                            >
+                                Instagram
+                            </a>
+                            <span>© {new Date().getFullYear()}</span>
+                        </div>
+                    </div>
                 </div>
             </nav>
 

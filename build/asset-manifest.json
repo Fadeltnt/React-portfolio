@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.d8bd880a.css",
-    "main.js": "/static/js/main.6663dfc3.js",
+    "main.css": "/static/css/main.ae2032aa.css",
+    "main.js": "/static/js/main.fe6f6c9f.js",
     "static/media/2.JPG": "/static/media/2.4f78aa5902575d47e267.JPG",
     "static/media/3.JPG": "/static/media/3.086e7ba9930accea83f4.JPG",
     "static/media/1.JPG": "/static/media/1.f5e4f6551164d0f5df10.JPG",
@@ -11,11 +11,11 @@
     "static/media/MHTIROGLA.ttf": "/static/media/MHTIROGLA.8885e889328c1e49c7b0.ttf",
     "static/media/Emilio-Thin-.otf": "/static/media/Emilio-Thin-.c57cfcd8f54768a6e36f.otf",
     "index.html": "/index.html",
-    "main.d8bd880a.css.map": "/static/css/main.d8bd880a.css.map",
-    "main.6663dfc3.js.map": "/static/js/main.6663dfc3.js.map"
+    "main.ae2032aa.css.map": "/static/css/main.ae2032aa.css.map",
+    "main.fe6f6c9f.js.map": "/static/js/main.fe6f6c9f.js.map"
   },
   "entrypoints": [
-    "static/css/main.d8bd880a.css",
-    "static/js/main.6663dfc3.js"
+    "static/css/main.ae2032aa.css",
+    "static/js/main.fe6f6c9f.js"
   ]
 }
