@@ -24,7 +24,12 @@ export default function Contact() {
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: encode({ "form-name": "contact", name, email, message }),
         })
-            .then(() => alert(language === 'fr' ? "Message envoyé !" : "Message sent!"))
+            .then(() => {
+                alert(language === 'fr' ? "Message envoyé !" : "Message sent!");
+                setName("");
+                setEmail("");
+                setMessage("");
+            })
             .catch((error) => alert(error));
     }
 

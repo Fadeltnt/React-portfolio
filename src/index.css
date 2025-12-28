@@ -120,4 +120,12 @@
   .nothing-border-glow {
     box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.05);
   }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }

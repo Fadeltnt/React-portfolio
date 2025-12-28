@@ -7,17 +7,21 @@ import PhotographyPortfolio from './components/PhotographyPortfolio';
 import ScrollToTop from './components/ScrollToTop';
 import "./App.css";
 
+import { ThemeProvider } from "./contexts/ThemeContext";
+
 export default function App() {
     return (
-        <LanguageProvider>
-            <Router>
-                <ScrollToTop />
-                <Routes>
-                    <Route path="/" element={<LandingPage />} />
-                    <Route path="/software" element={<SoftwarePortfolio />} />
-                    <Route path="/photography" element={<PhotographyPortfolio />} />
-                </Routes>
-            </Router>
-        </LanguageProvider>
+        <ThemeProvider>
+            <LanguageProvider>
+                <Router>
+                    <ScrollToTop />
+                    <Routes>
+                        <Route path="/" element={<LandingPage />} />
+                        <Route path="/software" element={<SoftwarePortfolio />} />
+                        <Route path="/photography" element={<PhotographyPortfolio />} />
+                    </Routes>
+                </Router>
+            </LanguageProvider>
+        </ThemeProvider>
     );
 }

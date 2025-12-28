@@ -1,15 +1,21 @@
 {
   "files": {
-    "main.css": "/static/css/main.4c420e70.css",
-    "main.js": "/static/js/main.bdd92518.js",
+    "main.css": "/static/css/main.d8bd880a.css",
+    "main.js": "/static/js/main.6663dfc3.js",
+    "static/media/2.JPG": "/static/media/2.4f78aa5902575d47e267.JPG",
+    "static/media/3.JPG": "/static/media/3.086e7ba9930accea83f4.JPG",
+    "static/media/1.JPG": "/static/media/1.f5e4f6551164d0f5df10.JPG",
+    "static/media/4.jpg": "/static/media/4.b6c0fa2c0cbf6e9a0056.jpg",
+    "static/media/5.JPG": "/static/media/5.fb95680da5e979bd7185.JPG",
+    "static/media/2.jpg": "/static/media/2.6e4acfd4cc4c7179312b.jpg",
     "static/media/MHTIROGLA.ttf": "/static/media/MHTIROGLA.8885e889328c1e49c7b0.ttf",
     "static/media/Emilio-Thin-.otf": "/static/media/Emilio-Thin-.c57cfcd8f54768a6e36f.otf",
     "index.html": "/index.html",
-    "main.4c420e70.css.map": "/static/css/main.4c420e70.css.map",
-    "main.bdd92518.js.map": "/static/js/main.bdd92518.js.map"
+    "main.d8bd880a.css.map": "/static/css/main.d8bd880a.css.map",
+    "main.6663dfc3.js.map": "/static/js/main.6663dfc3.js.map"
   },
   "entrypoints": [
-    "static/css/main.4c420e70.css",
-    "static/js/main.bdd92518.js"
+    "static/css/main.d8bd880a.css",
+    "static/js/main.6663dfc3.js"
   ]
 }

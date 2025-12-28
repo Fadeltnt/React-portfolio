@@ -118,3 +118,7 @@ body {
   color: transparent;
   -webkit-text-stroke: 1px black;
 }
+
+.dark .text-outline-transparent {
+  -webkit-text-stroke: 1px white;
+}
