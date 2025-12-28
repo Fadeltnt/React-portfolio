@@ -241,8 +241,8 @@ const PhotographyPortfolio = () => {
 
             {/* Hero Section */}
             <header id="about" className="flex flex-col justify-center items-center px-6 pt-40 pb-20">
-                <p className="text-2xl md:text-4xl leading-relaxed text-center max-w-4xl font-['Emilio_Thin']">
-                    Vibe Photographer from Ouagadougou, Burkina Faso.
+                <p className="text-2xl md:text-4xl leading-relaxed text-center max-w-4xl font-['Emilio_Thin'] font-bold">
+                    Amateur Photographer from Ouagadougou, Burkina Faso.
                     <br />
                     Passionate about capturing the raw energy and untold stories of my environment.
                 </p>
@@ -255,7 +255,7 @@ const PhotographyPortfolio = () => {
                         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 border-t border-black dark:border-white pt-6 transition-colors duration-500">
                             <div>
                                 <span className="block text-sm font-bold mb-2">0{index + 1} / PROJECT</span>
-                                <h2 className="text-5xl md:text-7xl font-['Emilio_Thin'] font-thin uppercase tracking-tight mb-2 text-outline-transparent dark:text-outline-transparent transition-colors duration-500">
+                                <h2 className="text-5xl md:text-7xl font-['Emilio_Thin'] font-thin uppercase tracking-wide mb-2 text-outline-transparent dark:text-outline-transparent transition-colors duration-500">
                                     {project.title}
                                 </h2>
                                 <div className="flex gap-2 mt-4">
@@ -265,7 +265,7 @@ const PhotographyPortfolio = () => {
                                 </div>
                             </div>
                             <div className="mt-6 md:mt-0 max-w-md text-right md:text-left">
-                                <p className="text-xl font-medium mb-1">{project.subtitle}</p>
+                                <p className="text-xl font-bold mb-1">{project.subtitle}</p>
                                 <p className="text-zinc-500 font-['Inter']">{project.description}</p>
                             </div>
                         </div>

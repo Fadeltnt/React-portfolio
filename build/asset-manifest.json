@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.ae2032aa.css",
-    "main.js": "/static/js/main.fe6f6c9f.js",
+    "main.js": "/static/js/main.5215930e.js",
     "static/media/2.JPG": "/static/media/2.4f78aa5902575d47e267.JPG",
     "static/media/3.JPG": "/static/media/3.086e7ba9930accea83f4.JPG",
     "static/media/1.JPG": "/static/media/1.f5e4f6551164d0f5df10.JPG",
@@ -12,10 +12,10 @@
     "static/media/Emilio-Thin-.otf": "/static/media/Emilio-Thin-.c57cfcd8f54768a6e36f.otf",
     "index.html": "/index.html",
     "main.ae2032aa.css.map": "/static/css/main.ae2032aa.css.map",
-    "main.fe6f6c9f.js.map": "/static/js/main.fe6f6c9f.js.map"
+    "main.5215930e.js.map": "/static/js/main.5215930e.js.map"
   },
   "entrypoints": [
     "static/css/main.ae2032aa.css",
-    "static/js/main.fe6f6c9f.js"
+    "static/js/main.5215930e.js"
   ]
 }
